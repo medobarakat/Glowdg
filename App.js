@@ -34,6 +34,9 @@ export default function App() {
     Roboto_900Black_Italic,
   });
 
+  let fontSize = 24;
+  let paddingVertical = 6;
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {

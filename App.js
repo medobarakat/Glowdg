@@ -1,5 +1,4 @@
 import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import {
@@ -17,6 +16,9 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
+import Paths from "./src/Navigation/Paths";
+import { store } from "./src/features/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -34,146 +36,13 @@ export default function App() {
     Roboto_900Black_Italic,
   });
 
-  let fontSize = 24;
-  let paddingVertical = 6;
-
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_100Thin",
-          }}
-        >
-          Roboto Thin
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_100Thin_Italic",
-          }}
-        >
-          Roboto Thin Italic
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_300Light",
-          }}
-        >
-          Roboto Light
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_300Light_Italic",
-          }}
-        >
-          Roboto Light Italic
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_400Regular",
-          }}
-        >
-          Roboto Regular
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_400Regular_Italic",
-          }}
-        >
-          Roboto Italic
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_500Medium",
-          }}
-        >
-          Roboto Medium
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_500Medium_Italic",
-          }}
-        >
-          Roboto Medium Italic
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_700Bold",
-          }}
-        >
-          Roboto Bold
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_700Bold_Italic",
-          }}
-        >
-          Roboto Bold Italic
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_900Black",
-          }}
-        >
-          Roboto Black
-        </Text>
-
-        <Text
-          style={{
-            fontSize,
-            paddingVertical,
-            // Note the quoting of the value for `fontFamily` here; it expects a string!
-            fontFamily: "Roboto_900Black_Italic",
-          }}
-        >
-          Roboto Black Italic
-        </Text>
-      </View>
+      <Provider store={store}>
+        <Paths />
+      </Provider>
     );
   }
 }

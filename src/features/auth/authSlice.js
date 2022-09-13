@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
-  IsGuest: true,
+  IsGuest: false, //!dont forget to return it to true ya ahmed
   IsLogged: false,
   IsUser: false,
   Token: null,

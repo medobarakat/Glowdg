@@ -2,7 +2,7 @@ import React from "react";
 import { Dimensions } from "react-native";
 
 export const { height, width } = Dimensions.get("window");
-
+export const verysmallSize = 12;
 export const smallSize = 15;
 export const secSmallSize = 18;
 export const TitleSize = 45;

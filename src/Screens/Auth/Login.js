@@ -1,26 +1,54 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
 import React from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
   width,
   smallSize,
+  verysmallSize,
   secSmallSize,
   TitleSize,
 } from "../../constants/Sized";
+import { Input } from "react-native-elements";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Button } from "@rneui/themed";
 
 // const windowWidth = Dimensions.get("window").width;
 // const windowHeight = Dimensions.get("window").height;
 const Login = () => {
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
       <View style={styles.firstset}>
         <View style={styles.firstitle}>
           <Text style={styles.firstitletxt}>GLOWDG</Text>
         </View>
         <Text style={styles.firstsettxt}>Login</Text>
       </View>
-    </View>
+      <View style={styles.inputcontainer}>
+        <Input
+          style={styles.input}
+          placeholder="Email"
+          leftIcon={{ type: "font-awesome", name: "envelope" }}
+        />
+        <Input
+          style={styles.input}
+          placeholder="Password"
+          leftIcon={{ type: "font-awesome", name: "lock" }}
+        />
+        <Pressable style={styles.forget}>
+          <Text style={styles.forgettxt}>Forget Password ?</Text>
+        </Pressable>
+        <Button color={PrimaryColor} containerStyle={styles.btn}>
+          Login
+        </Button>
+        <View style={styles.lastsec}>
+          <Text style={styles.lasttxt}>Don't have an account?</Text>
+          <Pressable>
+            <Text style={styles.lastpress}> Register</Text>
+          </Pressable>
+        </View>
+      </View>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -31,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   firstset: {
-    height: height / 2,
+    height: height / 2.7,
     backgroundColor: PrimaryColor,
     borderBottomLeftRadius: height / 7,
   },
@@ -52,5 +80,38 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_500Medium",
     fontSize: secSmallSize,
     color: WhiteColor,
+  },
+  inputcontainer: {
+    marginTop: height / 20,
+    width: width / 1.5,
+    marginLeft: width / 6,
+  },
+  input: {
+    width: width / 5,
+  },
+  forget: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  forgettxt: {
+    fontSize: verysmallSize,
+    color: "#777",
+  },
+  btn: {
+    marginTop: height / 13,
+  },
+  lastsec: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: height / 10,
+    marginLeft: width / 8,
+  },
+  lasttxt: {
+    fontSize: verysmallSize,
+  },
+  lastpress: {
+    color: "red",
+    fontSize: verysmallSize,
   },
 });

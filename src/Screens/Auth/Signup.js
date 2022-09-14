@@ -15,36 +15,32 @@ import { Button } from "@rneui/themed";
 
 // const windowWidth = Dimensions.get("window").width;
 // const windowHeight = Dimensions.get("window").height;
-const Login = ({ navigation }) => {
+const Signup = ({ navigation }) => {
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <View style={styles.firstset}>
         <View style={styles.firstitle}>
           <Text style={styles.firstitletxt}>GLOWDG</Text>
         </View>
-        <Text style={styles.firstsettxt}>Login</Text>
+        <Text style={styles.firstsettxt}>Create New Account</Text>
       </View>
       <View style={styles.inputcontainer}>
-        <Input
-          style={styles.input}
-          placeholder="Email"
-          leftIcon={{ type: "font-awesome", name: "envelope" }}
-        />
-        <Input
-          style={styles.input}
-          placeholder="Password"
-          leftIcon={{ type: "font-awesome", name: "lock" }}
-        />
-        <Pressable style={styles.forget}>
-          <Text style={styles.forgettxt}>Forget Password ?</Text>
-        </Pressable>
-        <Button color={PrimaryColor} containerStyle={styles.btn}>
-          Login
+        <Input style={styles.input} placeholder="Name" />
+        <Input style={styles.input} placeholder="Email" />
+        <Input style={styles.input} placeholder="Password" />
+        <Input style={styles.input} placeholder="Confirm Password" />
+
+        <Button
+          color={PrimaryColor}
+          containerStyle={styles.btn}
+          onPress={() => navigation.goBack()}
+        >
+          Sign Up
         </Button>
         <View style={styles.lastsec}>
-          <Text style={styles.lasttxt}>Don't have an account?</Text>
-          <Pressable onPress={() => navigation.navigate("signup")}>
-            <Text style={styles.lastpress}> Register</Text>
+          <Text style={styles.lasttxt}>Already have an account?</Text>
+          <Pressable onPress={() => navigation.goBack()}>
+            <Text style={styles.lastpress}> Login</Text>
           </Pressable>
         </View>
       </View>
@@ -52,16 +48,17 @@ const Login = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default Signup;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   firstset: {
-    height: height / 2.7,
+    height: height / 3,
     backgroundColor: PrimaryColor,
-    borderBottomLeftRadius: height / 7,
+    borderBottomRightRadius: height / 10,
+    borderBottomLeftRadius: height / 10,
   },
   firstitle: {
     display: "flex",
@@ -75,10 +72,10 @@ const styles = StyleSheet.create({
   },
   firstsettxt: {
     position: "absolute",
-    bottom: height / 15,
+    bottom: height / 18,
     right: height / 20,
     fontFamily: "Roboto_500Medium",
-    fontSize: secSmallSize,
+    fontSize: secSmallSize / 1.2,
     color: WhiteColor,
   },
   inputcontainer: {
@@ -89,17 +86,9 @@ const styles = StyleSheet.create({
   input: {
     width: width / 5,
   },
-  forget: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  },
-  forgettxt: {
-    fontSize: verysmallSize,
-    color: "#777",
-  },
+
   btn: {
-    marginTop: height / 13,
+    marginTop: height / 30,
     borderRadius: height / 5,
     elevation: 3,
     shadowColor: "#171717",
@@ -111,7 +100,7 @@ const styles = StyleSheet.create({
   lastsec: {
     display: "flex",
     flexDirection: "row",
-    marginTop: height / 10,
+    marginTop: height / 18,
     marginLeft: width / 8,
   },
   lasttxt: {

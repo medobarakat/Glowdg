@@ -3,8 +3,10 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // the screens
-import Login from "../Screens/Auth/Login";
 import Home from "../Screens/Home";
+// auth screen
+import Login from "../Screens/Auth/Login";
+import Signup from "../Screens/Auth/Signup";
 
 import { useSelector } from "react-redux";
 
@@ -39,6 +41,7 @@ const Renderpages2 = () => {
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="signup" component={Signup} />
         </Stack.Navigator>
       )}
     </>

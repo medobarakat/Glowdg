@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -12,18 +12,32 @@ import {
 import { Input } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Button } from "@rneui/themed";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 
-// const windowWidth = Dimensions.get("window").width;
-// const windowHeight = Dimensions.get("window").height;
 const Login = ({ navigation }) => {
+  const progress = useSharedValue(0);
+  const reanimatedstyle = useAnimatedStyle(() => {
+    return {
+      borderBottomLeftRadius: progress.value,
+    };
+  }, []);
+
+  useEffect(() => {
+    progress.value = withTiming(height / 7, { duration: 3000 });
+  }, []);
+
   return (
     <KeyboardAwareScrollView style={styles.container}>
-      <View style={styles.firstset}>
+      <Animated.View style={[styles.firstset, reanimatedstyle]}>
         <View style={styles.firstitle}>
           <Text style={styles.firstitletxt}>GLOWDG</Text>
         </View>
         <Text style={styles.firstsettxt}>Login</Text>
-      </View>
+      </Animated.View>
       <View style={styles.inputcontainer}>
         <Input
           style={styles.input}
@@ -33,12 +47,17 @@ const Login = ({ navigation }) => {
         <Input
           style={styles.input}
           placeholder="Password"
+          secureTextEntry={true}
           leftIcon={{ type: "font-awesome", name: "lock" }}
         />
         <Pressable style={styles.forget}>
           <Text style={styles.forgettxt}>Forget Password ?</Text>
         </Pressable>
-        <Button color={PrimaryColor} containerStyle={styles.btn}>
+        <Button
+          color={PrimaryColor}
+          containerStyle={styles.btn}
+          onPress={() => navigation.navigate("home1")}
+        >
           Login
         </Button>
         <View style={styles.lastsec}>
@@ -61,7 +80,7 @@ const styles = StyleSheet.create({
   firstset: {
     height: height / 2.7,
     backgroundColor: PrimaryColor,
-    borderBottomLeftRadius: height / 7,
+    // borderBottomLeftRadius: height / 7,
   },
   firstitle: {
     display: "flex",

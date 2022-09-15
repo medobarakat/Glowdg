@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -12,18 +12,34 @@ import {
 import { Input } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Button } from "@rneui/themed";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 
-// const windowWidth = Dimensions.get("window").width;
-// const windowHeight = Dimensions.get("window").height;
 const Signup = ({ navigation }) => {
+  const progress = useSharedValue(0);
+  const reanimatedstyle = useAnimatedStyle(() => {
+    return {
+      borderBottomRightRadius: progress.value,
+      borderBottomLeftRadius: progress.value,
+    };
+  }, []);
+
+  useEffect(() => {
+    progress.value = withTiming(height / 10, { duration: 3000 });
+  }, []);
+
   return (
     <KeyboardAwareScrollView style={styles.container}>
-      <View style={styles.firstset}>
+      {/* <Animated.View style={[styles.firstset, reanimatedstyle]}> */}
+      <Animated.View style={[styles.firstset, reanimatedstyle]}>
         <View style={styles.firstitle}>
           <Text style={styles.firstitletxt}>GLOWDG</Text>
         </View>
         <Text style={styles.firstsettxt}>Create New Account</Text>
-      </View>
+      </Animated.View>
       <View style={styles.inputcontainer}>
         <Input style={styles.input} placeholder="Name" />
         <Input style={styles.input} placeholder="Email" />
@@ -57,8 +73,8 @@ const styles = StyleSheet.create({
   firstset: {
     height: height / 3,
     backgroundColor: PrimaryColor,
-    borderBottomRightRadius: height / 10,
-    borderBottomLeftRadius: height / 10,
+    // borderBottomRightRadius: height / 10,
+    // borderBottomLeftRadius: height / 10,
   },
   firstitle: {
     display: "flex",

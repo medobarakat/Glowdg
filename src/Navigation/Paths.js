@@ -3,7 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // the screens
-import Home from "../Screens/Home";
+import HomeNavigation from "../Navigation/HomeNavigation";
 // auth screen
 import Login from "../Screens/Auth/Login";
 import Signup from "../Screens/Auth/Signup";
@@ -18,7 +18,7 @@ const Renderpages = () => {
     <>
       {IsUser && (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="home" component={home} />
+          <Stack.Screen name="home" component={Home} />
         </Stack.Navigator>
       )}
     </>
@@ -36,12 +36,14 @@ const Renderpages2 = () => {
           <Stack.Screen name="home" component={Home} />
         </Stack.Navigator>
       ) : (
+        //! Here if logged
         <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="signup" component={Signup} />
+          <Stack.Screen name="home1" component={HomeNavigation} />
         </Stack.Navigator>
       )}
     </>

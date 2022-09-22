@@ -12,7 +12,6 @@ import Membership from "../Screens/Membership";
 import Contactus from "../Screens/Contactus";
 import Faqs from "../Screens/Faqs";
 import CustomDrawer from "../components/CustomDrawer";
-
 // importing login screen
 import Login from "../Screens/Auth/Login";
 import CustomHeader from "../components/CustomHeader";

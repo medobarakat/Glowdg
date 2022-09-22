@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -17,8 +17,16 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
+import axios from "axios";
+
+import { Formik } from "formik";
+import { Api_url } from "../../uitlties/ApiConstants";
+import { useDispatch } from "react-redux";
 
 const Signup = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const progress = useSharedValue(0);
   const reanimatedstyle = useAnimatedStyle(() => {
     return {
@@ -31,35 +39,124 @@ const Signup = ({ navigation }) => {
     progress.value = withTiming(height / 10, { duration: 3000 });
   }, []);
 
+  const HandleSignUp = async (username, password, email) => {
+    const url =
+      Api_url +
+      `?uname=${username}&upass=${password}&uemail=${email}&flg=create`;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    };
+    setShowModal(true);
+    axios
+      .post(url, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <KeyboardAwareScrollView style={styles.container}>
-      {/* <Animated.View style={[styles.firstset, reanimatedstyle]}> */}
-      <Animated.View style={[styles.firstset, reanimatedstyle]}>
-        <View style={styles.firstitle}>
-          <Text style={styles.firstitletxt}>GLOWDG</Text>
-        </View>
-        <Text style={styles.firstsettxt}>Create New Account</Text>
-      </Animated.View>
-      <View style={styles.inputcontainer}>
-        <Input style={styles.input} placeholder="Name" />
-        <Input style={styles.input} placeholder="Email" />
-        <Input style={styles.input} placeholder="Password" />
-        <Input style={styles.input} placeholder="Confirm Password" />
+      <Formik
+        initialValues={{
+          username: "",
+          password: "",
+          confirmPassword: "",
+          email: "",
+        }}
+        onSubmit={async (values) => {
+          if (values.password === values.confirmPassword) {
+            await HandleSignUp(values.username, values.password, values.email);
+          } else {
+            setError("Confirm Password Is Not The Same Password");
+          }
+        }}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values }) => (
+          <View>
+            <Animated.View style={[styles.firstset, reanimatedstyle]}>
+              <View style={styles.firstitle}>
+                <Text style={styles.firstitletxt}>GLOWDG</Text>
+              </View>
+              <Text style={styles.firstsettxt}>Create New Account</Text>
+            </Animated.View>
+            <View style={styles.inputcontainer}>
+              <Input
+                style={styles.input}
+                placeholder="User name"
+                value={values.username}
+                onChangeText={handleChange("username")}
+                onBlur={handleBlur("username")}
+              />
+              <Input
+                style={styles.input}
+                placeholder="Email"
+                value={values.email}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+              />
+              <Input
+                style={styles.input}
+                placeholder="Password"
+                secureTextEntry={true}
+                value={values.password}
+                onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
+              />
+              <Input
+                style={styles.input}
+                placeholder="Confirm Password"
+                secureTextEntry={true}
+                value={values.confirmPassword}
+                onChangeText={handleChange("confirmPassword")}
+                onBlur={handleBlur("confirmPassword")}
+              />
+              {/* for error handling */}
 
-        <Button
-          color={PrimaryColor}
-          containerStyle={styles.btn}
-          onPress={() => navigation.goBack()}
-        >
-          Sign Up
-        </Button>
-        <View style={styles.lastsec}>
-          <Text style={styles.lasttxt}>Already have an account?</Text>
-          <Pressable onPress={() => navigation.goBack()}>
-            <Text style={styles.lastpress}> Login</Text>
-          </Pressable>
-        </View>
-      </View>
+              <View>
+                <View>
+                  {error && (
+                    <View style={styles.errmessage}>
+                      <Text style={styles.errmessagetxt}>{error}</Text>
+                    </View>
+                  )}
+                </View>
+                <View>
+                  {error === undefined && (
+                    <View style={styles.errmessage}>
+                      <Text style={styles.errmessagetxt}>
+                        {" "}
+                        Check Your Connection and retry to log in{" "}
+                      </Text>
+                    </View>
+                  )}
+                </View>
+              </View>
+              {/* end of error handling */}
+              <Button
+                onPress={handleSubmit}
+                color={PrimaryColor}
+                containerStyle={styles.btn}
+                // onPress={() => navigation.goBack()}
+              >
+                Sign Up
+              </Button>
+              <View style={styles.lastsec}>
+                <Text style={styles.lasttxt}>Already have an account?</Text>
+                <Pressable onPress={() => navigation.goBack()}>
+                  <Text style={styles.lastpress}> Login</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        )}
+      </Formik>
     </KeyboardAwareScrollView>
   );
 };
@@ -73,8 +170,6 @@ const styles = StyleSheet.create({
   firstset: {
     height: height / 3,
     backgroundColor: PrimaryColor,
-    // borderBottomRightRadius: height / 10,
-    // borderBottomLeftRadius: height / 10,
   },
   firstitle: {
     display: "flex",
@@ -125,5 +220,15 @@ const styles = StyleSheet.create({
   lastpress: {
     color: "red",
     fontSize: verysmallSize,
+  },
+  errmessage: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  errmessagetxt: {
+    fontSize: 14,
+    fontFamily: "Roboto_500Medium",
+    color: "red",
   },
 });

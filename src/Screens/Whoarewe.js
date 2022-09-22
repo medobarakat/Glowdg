@@ -4,7 +4,7 @@ import React from "react";
 const Whoarewe = () => {
   return (
     <View>
-      <Text>Whoarewe</Text>
+      <Text>Whoareweaaaa</Text>
     </View>
   );
 };

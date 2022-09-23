@@ -232,9 +232,11 @@ const styles = StyleSheet.create({
   },
   minicardright1: {
     fontSize: secSmallSize,
-    marginBottom: width / 50
+    marginBottom: width / 50,
+    fontFamily: "Roboto_700Bold"
   },
   minicardright2: {
-    fontSize: smallSize
+    fontSize: smallSize,
+    fontFamily: "Roboto_500Medium"
   }
 });

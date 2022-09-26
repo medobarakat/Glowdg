@@ -8,7 +8,7 @@ import {
   Pressable,
 } from "react-native";
 import React, { useState, useCallback, useRef } from "react";
-import { Header, Icon } from "@rneui/themed";
+import { Divider, Icon, Button, Card } from "@rneui/themed";
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import {
   TitleSize,
@@ -18,23 +18,11 @@ import {
   smallSize,
 } from "../constants/Sized";
 import ImageCarousel from "../components/ImageCarousel";
-const renderItem = ({ item, index }) => {
-  return (
-    <View
-      style={{
-        backgroundColor: "floralwhite",
-        borderRadius: 5,
-        height: 250,
-        padding: 50,
-        marginLeft: 25,
-        marginRight: 25,
-      }}
-    >
-      <Text style={{ fontSize: 30 }}>{item.title}</Text>
-      <Text>{item.text}</Text>
-    </View>
-  );
-};
+import Icon1 from "../img/icons/Icon1";
+import Icon2 from "../img/icons/Icon2";
+import Icon3 from "../img/icons/Icon3";
+import Icon4 from "../img/icons/Icon4";
+
 
 const Home = ({ navigation }) => {
   const data = [
@@ -66,6 +54,10 @@ const Home = ({ navigation }) => {
           <Text style={styles.titlecontainertxt}>
             Welcome to GLOWDG Family , Want to become GLOWDG member ?
           </Text>
+          <View style={styles.btncontainer}>
+
+            <Button onPress={() => navigation.navigate("Membership")} title="Learn More" color={"warning"} buttonStyle={{ borderRadius: width / 20 }} />
+          </View>
         </View>
         <View>
           <Pressable
@@ -90,6 +82,7 @@ const Home = ({ navigation }) => {
                   />
                 </View>
               </View>
+
             </ImageBackground>
           </Pressable>
           <Pressable
@@ -118,6 +111,48 @@ const Home = ({ navigation }) => {
               </View>
             </ImageBackground>
           </Pressable>
+          <Divider color={"black"} />
+          <View style={styles.minicardcontainermain}>
+
+            <View style={styles.minicardcontainer}>
+              <View style={styles.minicardleft}>
+                <Icon1 style={styles.minicardlefticon} />
+              </View>
+              <View style={styles.minicardright}>
+                <Text style={styles.minicardright1}>FREE SHIPPING</Text>
+                <Text style={styles.minicardright2}>From all orders over 250 AE </Text>
+              </View>
+            </View>
+            <View style={styles.minicardcontainer}>
+              <View style={styles.minicardleft}>
+                <Icon2 style={styles.minicardlefticon} />
+              </View>
+              <View style={styles.minicardright}>
+                <Text style={styles.minicardright1}>FREE RETURNS</Text>
+                <Text style={styles.minicardright2}>Return money within 30 days </Text>
+              </View>
+            </View>
+            <View style={styles.minicardcontainer}>
+              <View style={styles.minicardleft}>
+                <Icon3 style={styles.minicardlefticon} />
+              </View>
+              <View style={styles.minicardright}>
+                <Text style={styles.minicardright1}>SECURE SHOPPING</Text>
+                <Text style={styles.minicardright2}>You're in safe hands</Text>
+              </View>
+            </View>
+            <View style={styles.minicardcontainer}>
+              <View style={styles.minicardleft}>
+                <Icon4 style={styles.minicardlefticon} />
+              </View>
+              <View style={styles.minicardright}>
+                <Text style={styles.minicardright1}>OVER 10,000 STYLES</Text>
+                <Text style={styles.minicardright2}>( Spanning All Over the UAE ) </Text>
+              </View>
+            </View>
+          </View>
+
+
         </View>
       </ScrollView>
     </ImageBackground>
@@ -135,6 +170,10 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_500Medium",
     fontSize: TitleSize / 2,
     color: WhiteColor,
+  },
+  btncontainer: {
+    marginHorizontal: width / 3,
+    marginVertical: width / 30,
   },
   card: {
     display: "flex",
@@ -169,4 +208,35 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 5,
   },
+  minicardcontainermain: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  minicardcontainer: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 5,
+    width: width / 1.6,
+    height: height / 7,
+    marginVertical: width / 25,
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  minicardright: {
+    width: width / 2,
+
+  },
+  minicardlefticon: {
+    width: 150
+  },
+  minicardright1: {
+    fontSize: secSmallSize,
+    marginBottom: width / 50,
+    fontFamily: "Roboto_700Bold"
+  },
+  minicardright2: {
+    fontSize: smallSize,
+    fontFamily: "Roboto_500Medium"
+  }
 });

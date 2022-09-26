@@ -4,7 +4,7 @@ import {
   View,
   Pressable,
   ImageBackground,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { Header, Icon } from "@rneui/themed";
@@ -20,7 +20,7 @@ import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 const Electronics = ({ navigation }) => {
   return (
     <View>
-    <Pressable
+      <Pressable
         style={styles.card}
         onPress={() => navigation.navigate("Electronicsshop")}
       >

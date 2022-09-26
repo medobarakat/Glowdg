@@ -5,7 +5,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../Screens/Home";
 import Whoarewe from "../Screens/Whoarewe";
 import Services from "../Screens/Services";
-import Electronics from "../Screens/Electronics";
+// import Electronics from "../Screens/Electronics";
+import ElectornicAndCaps from "./ElectornicAndCaps";
 import Caps from "../Screens/Caps";
 import Bussiness from "../Screens/Bussiness";
 import Membership from "../Screens/Membership";
@@ -41,7 +42,7 @@ const HomeNavigation = ({ Navigation }) => {
       <Drawer.Screen name="Services" component={Services} />
       <Drawer.Screen
         name="Electronics"
-        component={Electronics}
+        component={ElectornicAndCaps}
         options={{
           title: "Electronics & More",
         }}

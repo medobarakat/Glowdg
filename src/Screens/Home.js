@@ -18,11 +18,6 @@ import {
   smallSize,
 } from "../constants/Sized";
 import ImageCarousel from "../components/ImageCarousel";
-import Icon1 from "../img/icons/Icon1";
-import Icon2 from "../img/icons/Icon2";
-import Icon3 from "../img/icons/Icon3";
-import Icon4 from "../img/icons/Icon4";
-
 
 const Home = ({ navigation }) => {
   const data = [
@@ -55,8 +50,12 @@ const Home = ({ navigation }) => {
             Welcome to GLOWDG Family , Want to become GLOWDG member ?
           </Text>
           <View style={styles.btncontainer}>
-
-            <Button onPress={() => navigation.navigate("Membership")} title="Learn More" color={"warning"} buttonStyle={{ borderRadius: width / 20 }} />
+            <Button
+              onPress={() => navigation.navigate("Membership")}
+              title="Learn More"
+              color={"warning"}
+              buttonStyle={{ borderRadius: width / 20 }}
+            />
           </View>
         </View>
         <View>
@@ -82,7 +81,6 @@ const Home = ({ navigation }) => {
                   />
                 </View>
               </View>
-
             </ImageBackground>
           </Pressable>
           <Pressable
@@ -112,15 +110,16 @@ const Home = ({ navigation }) => {
             </ImageBackground>
           </Pressable>
           <Divider color={"black"} />
-          <View style={styles.minicardcontainermain}>
-
+          {/* <View style={styles.minicardcontainermain}>
             <View style={styles.minicardcontainer}>
               <View style={styles.minicardleft}>
                 <Icon1 style={styles.minicardlefticon} />
               </View>
               <View style={styles.minicardright}>
                 <Text style={styles.minicardright1}>FREE SHIPPING</Text>
-                <Text style={styles.minicardright2}>From all orders over 250 AE </Text>
+                <Text style={styles.minicardright2}>
+                  From all orders over 250 AE{" "}
+                </Text>
               </View>
             </View>
             <View style={styles.minicardcontainer}>
@@ -129,7 +128,9 @@ const Home = ({ navigation }) => {
               </View>
               <View style={styles.minicardright}>
                 <Text style={styles.minicardright1}>FREE RETURNS</Text>
-                <Text style={styles.minicardright2}>Return money within 30 days </Text>
+                <Text style={styles.minicardright2}>
+                  Return money within 30 days{" "}
+                </Text>
               </View>
             </View>
             <View style={styles.minicardcontainer}>
@@ -147,12 +148,12 @@ const Home = ({ navigation }) => {
               </View>
               <View style={styles.minicardright}>
                 <Text style={styles.minicardright1}>OVER 10,000 STYLES</Text>
-                <Text style={styles.minicardright2}>( Spanning All Over the UAE ) </Text>
+                <Text style={styles.minicardright2}>
+                  ( Spanning All Over the UAE ){" "}
+                </Text>
               </View>
             </View>
-          </View>
-
-
+          </View> */}
         </View>
       </ScrollView>
     </ImageBackground>
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
   minicardcontainermain: {
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   minicardcontainer: {
     display: "flex",
@@ -221,22 +222,21 @@ const styles = StyleSheet.create({
     height: height / 7,
     marginVertical: width / 25,
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   minicardright: {
     width: width / 2,
-
   },
   minicardlefticon: {
-    width: 150
+    width: 150,
   },
   minicardright1: {
     fontSize: secSmallSize,
     marginBottom: width / 50,
-    fontFamily: "Roboto_700Bold"
+    fontFamily: "Roboto_700Bold",
   },
   minicardright2: {
     fontSize: smallSize,
-    fontFamily: "Roboto_500Medium"
-  }
+    fontFamily: "Roboto_500Medium",
+  },
 });

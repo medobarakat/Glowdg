@@ -4,9 +4,10 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 // the screens
 import Home from "../Screens/Home";
 import Whoarewe from "../Screens/Whoarewe";
+import ServicesNavigation from "./ServicesNavigation";
 import Services from "../Screens/Services";
 // import Electronics from "../Screens/Electronics";
-import ElectornicAndCaps from "./ElectornicAndCaps";
+import ElectornicAndCapsNavigation from "./ElectornicAndCapsNavigation";
 import Caps from "../Screens/Caps";
 import Bussiness from "../Screens/Bussiness";
 import Membership from "../Screens/Membership";
@@ -39,10 +40,10 @@ const HomeNavigation = ({ Navigation }) => {
           title: "Who We Are",
         }}
       />
-      <Drawer.Screen name="Services" component={Services} />
+      <Drawer.Screen name="Services" component={ServicesNavigation} />
       <Drawer.Screen
         name="Electronics"
-        component={ElectornicAndCaps}
+        component={ElectornicAndCapsNavigation}
         options={{
           title: "Electronics & More",
         }}
@@ -68,7 +69,13 @@ const HomeNavigation = ({ Navigation }) => {
           title: "GLOWDG membership",
         }}
       />
-      <Drawer.Screen name="Contactus" component={Contactus} />
+      <Drawer.Screen
+        name="Contactus"
+        component={Contactus}
+        options={{
+          title: "Contact Us",
+        }}
+      />
       <Drawer.Screen name="Faqs" component={Faqs} />
       <Drawer.Screen name="Login" component={Login} />
     </Drawer.Navigator>

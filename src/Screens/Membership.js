@@ -13,6 +13,7 @@ import {
   secSmallSize,
   TitleSize,
 } from "../constants/Sized";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 const Membership = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -90,7 +91,11 @@ const Membership = () => {
         }}
       >
         {({ handleChange, handleBlur, handleSubmit, values }) => (
-          <View style={styles.inputcontainer}>
+          <Animated.View
+            style={styles.inputcontainer}
+            entering={FadeIn}
+            exiting={FadeOut}
+          >
             <Input
               style={styles.input}
               placeholder="First name"
@@ -155,7 +160,7 @@ const Membership = () => {
             >
               Submit
             </Button>
-          </View>
+          </Animated.View>
         )}
       </Formik>
     </KeyboardAwareScrollView>

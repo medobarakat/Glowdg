@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignContent: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
+    marginTop: height / 20,
   },
   maintxt: {
-    fontSize: TitleSize,
+    fontSize: TitleSize / 2,
+    fontFamily: "Roboto_700Bold",
     color: BlackColor,
   },
 });

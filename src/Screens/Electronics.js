@@ -19,7 +19,8 @@ import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 
 const Electronics = ({ navigation }) => {
   return (
-    <View>
+    <ScrollView style={{ flex: 1 }}>
+      <Text style={styles.maintxt}>Electronics & More</Text>
       <Pressable
         style={styles.card}
         onPress={() => navigation.navigate("Electronicsshop")}
@@ -57,13 +58,20 @@ const Electronics = ({ navigation }) => {
           </View>
         </ImageBackground>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 };
 
 export default Electronics;
 
 const styles = StyleSheet.create({
+  maintxt: {
+    fontSize: TitleSize / 2,
+    fontFamily: "Roboto_700Bold",
+    color: BlackColor,
+    marginVertical: width / 25,
+    textAlign: "center",
+  },
   card: {
     display: "flex",
     justifyContent: "center",

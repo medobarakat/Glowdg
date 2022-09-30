@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Icon, Divider } from "@rneui/themed";
 import {
   SafeAreaView,
-  Switch,
+  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -126,7 +126,10 @@ const Faqs = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <ImageBackground
+      style={{ flex: 1, paddingTop: 20 }}
+      source={require("../img/wb.jpg")}
+    >
       <View style={styles.container}>
         <Text style={styles.title}>Faqs</Text>
         <ScrollView>
@@ -156,7 +159,7 @@ const Faqs = () => {
           />
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </ImageBackground>
   );
 };
 
@@ -171,7 +174,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: TitleSize / 2,
     fontFamily: "Roboto_700Bold",
-    color: BlackColor,
+    color: WhiteColor,
     marginBottom: 20,
   },
   title2: {

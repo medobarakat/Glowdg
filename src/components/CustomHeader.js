@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Header, Icon } from "@rneui/themed";
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
-import { TitleSize } from "../constants/Sized";
+import { height, TitleSize, width } from "../constants/Sized";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
 
 const CustomHeader = () => {
@@ -11,6 +11,10 @@ const CustomHeader = () => {
   const navigation = useNavigation();
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
+  const navigateto = (name) => {
+    navigation.navigate(name);
+    hideMenu();
+  };
   return (
     <View>
       <Header
@@ -34,11 +38,16 @@ const CustomHeader = () => {
               anchor={<Icon onPress={showMenu} name="person" color="white" />}
               onRequestClose={hideMenu}
             >
-              <MenuItem onPress={hideMenu}>Menu item 1</MenuItem>
-              <MenuItem onPress={hideMenu}>Menu item 2</MenuItem>
-              <MenuItem disabled>Disabled item</MenuItem>
+              <View style={styles.usercontainer}>
+                <Text style={styles.usercontainertxt}>Welcome User</Text>
+              </View>
+
               <MenuDivider />
-              <MenuItem onPress={hideMenu}>Menu item 4</MenuItem>
+              <MenuItem onPress={() => navigateto("Settings")}>
+                Settings
+              </MenuItem>
+              <MenuItem onPress={hideMenu}>Log Out</MenuItem>
+              <MenuDivider />
             </Menu>
           </View>
         }
@@ -54,5 +63,11 @@ const styles = StyleSheet.create({
     fontSize: TitleSize / 2.5,
     fontWeight: "700",
     color: WhiteColor,
+  },
+  usercontainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingVertical: width / 40,
   },
 });

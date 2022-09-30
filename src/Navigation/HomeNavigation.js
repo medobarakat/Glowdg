@@ -15,7 +15,8 @@ import Contactus from "../Screens/Contactus";
 import Faqs from "../Screens/Faqs";
 import CustomDrawer from "../components/CustomDrawer";
 // importing login screen
-import Login from "../Screens/Auth/Login";
+import Settings from "../Screens/User/Settings";
+// import Login from "../Screens/Auth/Login";
 import CustomHeader from "../components/CustomHeader";
 const Drawer = createDrawerNavigator();
 
@@ -77,7 +78,14 @@ const HomeNavigation = ({ Navigation }) => {
         }}
       />
       <Drawer.Screen name="Faqs" component={Faqs} />
-      <Drawer.Screen name="Login" component={Login} />
+      <Drawer.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          drawerItemStyle: { height: 0 },
+        }}
+      />
+      {/* <Drawer.Screen name="Login" component={Login} /> */}
     </Drawer.Navigator>
   );
 };

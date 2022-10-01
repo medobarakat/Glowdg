@@ -5,7 +5,8 @@ import Services from "../Screens/Services";
 import CarServices from "../Screens/Services/CarServices";
 import CarWash from "../Screens/Services/CarWash";
 import Gym from "../Screens/Services/Gym";
-import Phone from "../Screens/Services/Phone";
+import PhonePaymentNavigation from "./PhonePaymentNavigation";
+// import Phone from "../Screens/Services/Phone";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +43,7 @@ const ServicesNavigation = () => {
       />
       <Stack.Screen
         name="Phone"
-        component={Phone}
+        component={PhonePaymentNavigation}
         options={{
           headerShown: false,
         }}

@@ -1,6 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
+import { Formik } from "formik";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {
+  PrimaryColor,
+  BlackColor,
+  WhiteColor,
+} from "../../../constants/Colors";
 import {
   height,
   width,
@@ -8,16 +14,13 @@ import {
   verysmallSize,
   secSmallSize,
   TitleSize,
-} from "../../constants/Sized";
+} from "../../../constants/Sized";
 import { Divider, Input, Button } from "@rneui/themed";
-import { Formik } from "formik";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const Phone = ({ navigation }) => {
+const PhoneFinalCost = () => {
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
       <View style={styles.container}>
-        <Text style={styles.maintxt}>Phone maintenance form</Text>
         <Formik
           initialValues={{
             type: "",
@@ -35,9 +38,7 @@ const Phone = ({ navigation }) => {
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View>
               <View style={styles.subformmaincontainer}>
-                <Text style={styles.subformmaincontainertitle}>
-                  Phone maintenance form
-                </Text>
+                <Text style={styles.subformmaincontainertitle}>Final cost</Text>
                 <View style={styles.subformcontainer}>
                   <Text style={styles.subformtitle}>Type Of Phone</Text>
                   <Input
@@ -85,7 +86,7 @@ const Phone = ({ navigation }) => {
   );
 };
 
-export default Phone;
+export default PhoneFinalCost;
 
 const styles = StyleSheet.create({
   container: {
@@ -93,15 +94,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "flex-start",
     alignItems: "center",
-  },
-  maintxt: {
-    fontSize: TitleSize / 2,
-    fontFamily: "Roboto_700Bold",
-    color: BlackColor,
-    marginTop: height / 20,
-  },
-  input: {
-    width: width / 5,
   },
   subformmaincontainer: {
     backgroundColor: PrimaryColor,
@@ -116,7 +108,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_500Medium",
     textAlign: "center",
     paddingVertical: height / 30,
-    fontSize: smallSize,
+    fontSize: smallSize * 1.5,
   },
   subformcontainer: {
     marginVertical: height / 50,

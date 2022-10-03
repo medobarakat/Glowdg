@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Services from "../Screens/Services";
 import CarServices from "../Screens/Services/CarServices";
 import CarWash from "../Screens/Services/CarWash";
-import Gym from "../Screens/Services/Gym";
+import GymPaymentNavigation from "./GymPaymentNavigation";
+// import Gym from "../Screens/Services/Gym";
 import PhonePaymentNavigation from "./PhonePaymentNavigation";
 // import Phone from "../Screens/Services/Phone";
 
@@ -29,7 +30,7 @@ const ServicesNavigation = () => {
       />
       <Stack.Screen
         name="Gym"
-        component={Gym}
+        component={GymPaymentNavigation}
         options={{
           headerShown: false,
         }}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
@@ -73,8 +73,13 @@ const Phone = ({ navigation }) => {
                     onPress={() => navigation.navigate("PhoneFinalCost")}
                     // onPress={handleSubmit}
                   >
-                    Login
+                    Next
                   </Button>
+                </View>
+                <View style={styles.previouscontainer}>
+                  <Pressable onPress={() => navigation.goBack()}>
+                    <Text style={styles.previouscontainertxt}>Go Back</Text>
+                  </Pressable>
                 </View>
               </View>
             </View>
@@ -129,5 +134,13 @@ const styles = StyleSheet.create({
     backgroundColor: BlackColor,
     width: width / 5,
     marginLeft: width / 3,
+    fontSize: secSmallSize,
+  },
+  previouscontainer: {
+    marginVertical: height / 35,
+  },
+  previouscontainertxt: {
+    fontFamily: "Roboto_700Bold",
+    textAlign: "center",
   },
 });

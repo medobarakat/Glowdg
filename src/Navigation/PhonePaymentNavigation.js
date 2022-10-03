@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // the screens
 import Phone from "../Screens/Services/Phone";
 import PhoneFinalCost from "../Screens/Services/PhonePayment/PhoneFinalCost";
-
+import Summary from "../Screens/Services/PhonePayment/Summary";
 const Stack = createNativeStackNavigator();
 
 const PhonePaymentNavigation = () => {
@@ -19,6 +19,13 @@ const PhonePaymentNavigation = () => {
       <Stack.Screen
         name="PhoneFinalCost"
         component={PhoneFinalCost}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Summary1"
+        component={Summary}
         options={{
           headerShown: false,
         }}

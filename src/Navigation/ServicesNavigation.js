@@ -2,7 +2,10 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // the screens
 import Services from "../Screens/Services";
-import CarServices from "../Screens/Services/CarServices";
+import CarServicesNavigation from "./CarServicesNavigation";
+// import CarServices from "../Screens/Services/CarServices";
+import CarWashNavigation from "./CarWashNavigation";
+
 import CarWash from "../Screens/Services/CarWash";
 import GymPaymentNavigation from "./GymPaymentNavigation";
 // import Gym from "../Screens/Services/Gym";
@@ -23,7 +26,7 @@ const ServicesNavigation = () => {
       />
       <Stack.Screen
         name="CarServices"
-        component={CarServices}
+        component={CarServicesNavigation}
         options={{
           headerShown: false,
         }}
@@ -37,7 +40,7 @@ const ServicesNavigation = () => {
       />
       <Stack.Screen
         name="CarWash"
-        component={CarWash}
+        component={CarWashNavigation}
         options={{
           headerShown: false,
         }}

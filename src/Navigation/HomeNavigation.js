@@ -8,7 +8,8 @@ import ServicesNavigation from "./ServicesNavigation";
 import Services from "../Screens/Services";
 // import Electronics from "../Screens/Electronics";
 import ElectornicAndCapsNavigation from "./ElectornicAndCapsNavigation";
-import Caps from "../Screens/Caps";
+import CapsProductsNavigation from "./CapsProductsNavigation";
+// import Caps from "../Screens/Caps";
 import Bussiness from "../Screens/Bussiness";
 import Membership from "../Screens/Membership";
 import Contactus from "../Screens/Contactus";
@@ -51,7 +52,7 @@ const HomeNavigation = ({ Navigation }) => {
       />
       <Drawer.Screen
         name="Caps"
-        component={Caps}
+        component={CapsProductsNavigation}
         options={{
           title: "CAPS BY GLOWDG",
         }}

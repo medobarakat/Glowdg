@@ -42,21 +42,21 @@ const Login = ({ navigation }) => {
     progress.value = withTiming(height / 7, { duration: 3000 });
   }, []);
 
-  const HandleLogIn = async (username, password) => {
-    axios
-      .post(Api_url, {
-        params: {
-          username,
-          password,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const HandleLogIn = async (username, password) => {
+  //   axios
+  //     .post(Api_url, {
+  //       params: {
+  //         username,
+  //         password,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   //   const HandleLogIn = async (username, password) => {
   //   const url = Api_url + `?uname=${username}&upass=${password}&flg=bUa5J4`;
@@ -77,6 +77,24 @@ const Login = ({ navigation }) => {
   //       console.log(err);
   //     });
   // };
+
+  const UserLogin = async (username, password) =>
+    await axios({
+      method: "POST",
+      url: Api_url,
+      params: {
+        username,
+        password,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        // dispatch(handlelogIn(res.data))
+        //  navigate("/admin/home");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
@@ -104,7 +122,7 @@ const Login = ({ navigation }) => {
         }}
         onSubmit={async (values) => {
           if (values.password && values.username) {
-            await HandleLogIn(values.username, values.password);
+            await UserLogin(values.username, values.password);
           } else {
             setError("Type Your Username and Password");
           }

@@ -58,43 +58,43 @@ const Login = ({ navigation }) => {
   //     });
   // };
 
-  //   const HandleLogIn = async (username, password) => {
-  //   const url = Api_url + `?uname=${username}&upass=${password}&flg=bUa5J4`;
+  const HandleLogIn = async (username, password) => {
+    const url = Api_url + `?uname=${username}&upass=${password}&flg=bUa5J4`;
 
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/x-www-form-urlencoded",
-  //       Accept: "application/json",
-  //     },
-  //   };
-  //   setShowModal(true);
-  //   axios
-  //     .post(url, config)
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  const UserLogin = async (username, password) =>
-    await axios({
-      method: "POST",
-      url: Api_url,
-      params: {
-        username,
-        password,
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
       },
-    })
+    };
+    setShowModal(true);
+    axios
+      .post(url, config)
       .then((res) => {
         console.log(res);
-        // dispatch(handlelogIn(res.data))
-        //  navigate("/admin/home");
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // const UserLogin = async (username, password) =>
+  //   await axios({
+  //     method: "POST",
+  //     url: Api_url,
+  //     params: {
+  //       username,
+  //       password,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //       dispatch(handlelogIn(res.data))
+  //        navigate("/admin/home");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
@@ -122,7 +122,7 @@ const Login = ({ navigation }) => {
         }}
         onSubmit={async (values) => {
           if (values.password && values.username) {
-            await UserLogin(values.username, values.password);
+            await HandleLogIn(values.username, values.password);
           } else {
             setError("Type Your Username and Password");
           }

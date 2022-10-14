@@ -5,8 +5,9 @@ import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { height, TitleSize, width } from "../constants/Sized";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
-
+import { useSelector } from "react-redux";
 const CustomHeader = () => {
+  const IsGuest = useSelector((state) => state.auth.IsGuest);
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
   const hideMenu = () => setVisible(false);
@@ -15,6 +16,10 @@ const CustomHeader = () => {
     navigation.navigate(name);
     hideMenu();
   };
+  const navigatelogin = () => {
+    navigation.navigate("Login");
+    hideMenu();
+  }
   return (
     <View>
       <Header
@@ -38,16 +43,35 @@ const CustomHeader = () => {
               anchor={<Icon onPress={showMenu} name="person" color="white" />}
               onRequestClose={hideMenu}
             >
-              <View style={styles.usercontainer}>
-                <Text style={styles.usercontainertxt}>Welcome User</Text>
-              </View>
+              {IsGuest ? (
+                <>
+                  <View style={styles.usercontainer}>
+                    <Text style={styles.usercontainertxt}>Welcome Guest</Text>
+                  </View>
 
-              <MenuDivider />
-              <MenuItem onPress={() => navigateto("Settings")}>
-                Settings
-              </MenuItem>
-              <MenuItem onPress={hideMenu}>Log Out</MenuItem>
-              <MenuDivider />
+                  <MenuDivider />
+                  <MenuItem onPress={navigatelogin}>
+                    Log In
+                  </MenuItem>
+                  <MenuItem onPress={hideMenu}>Log Out</MenuItem>
+                  <MenuDivider />
+                </>
+              ) : (
+                <>
+                  <View style={styles.usercontainer}>
+                    <Text style={styles.usercontainertxt}>Welcome User</Text>
+                  </View>
+
+                  <MenuDivider />
+                  <MenuItem onPress={() => navigateto("Settings")}>
+                    Settings
+                  </MenuItem>
+                  <MenuItem onPress={hideMenu}>Log Out</MenuItem>
+                  <MenuDivider />
+                </>
+              )}
+
+
             </Menu>
           </View>
         }

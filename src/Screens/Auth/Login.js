@@ -176,13 +176,13 @@ const Login = ({ navigation }) => {
               color={PrimaryColor}
               containerStyle={styles.btn}
               onPress={() => navigation.navigate("home1")}
-              // onPress={handleSubmit}
+            // onPress={handleSubmit}
             >
               Login
             </Button>
             <View style={styles.lastsec}>
               <Text style={styles.lasttxt}>Don't have an account?</Text>
-              <Pressable onPress={() => navigation.navigate("signup")}>
+              <Pressable onPress={() => navigation.navigate("Signup")}>
                 <Text style={styles.lastpress}> Register</Text>
               </Pressable>
             </View>

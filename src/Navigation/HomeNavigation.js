@@ -18,18 +18,22 @@ import CustomDrawer from "../components/CustomDrawer";
 // importing login screen
 import Settings from "../Screens/User/Settings";
 // import Login from "../Screens/Auth/Login";
+import LoginNavigation from "./LoginNavigation";
 import CustomHeader from "../components/CustomHeader";
+import { useSelector } from "react-redux";
+
 const Drawer = createDrawerNavigator();
 
 const HomeNavigation = ({ Navigation }) => {
+  const IsGuest = useSelector((state) => state.auth.IsGuest);
   return (
     <Drawer.Navigator
-      initialRouteName="home"
+      initialRouteName="home1"
       screenOptions={{ header: () => <CustomHeader /> }}
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
-        name="home"
+        name="home1"
         component={Home}
         options={{
           title: "Home",
@@ -86,7 +90,7 @@ const HomeNavigation = ({ Navigation }) => {
           drawerItemStyle: { height: 0 },
         }}
       />
-      {/* <Drawer.Screen name="Login" component={Login} /> */}
+      {IsGuest && <Drawer.Screen name="Login" component={LoginNavigation} options={{ headerShown: false }} />}
     </Drawer.Navigator>
   );
 };

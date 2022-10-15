@@ -16,6 +16,8 @@ import {
 } from "../../../constants/Sized";
 import { Overlay } from "react-native-elements";
 import LottieView from 'lottie-react-native';
+import { useSelector } from "react-redux";
+
 const Summary = ({ navigation }) => {
   const animation = useRef(null);
   const [showModal, setShowModal] = useState(false);
@@ -76,8 +78,9 @@ const Summary = ({ navigation }) => {
         <View style={styles.btn}>
           <Button
             color="secondary"
-          // onPress={() => navigation.navigate("Summary1")}
-          // onPress={handleSubmit}
+            // onPress={() => navigation.navigate("Summary1")}
+            // onPress={handleSubmit}
+            onPress={orderhandler}
           >
             Order
           </Button>

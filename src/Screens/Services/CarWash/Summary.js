@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Divider, Input, Button } from "@rneui/themed";
+import { Overlay } from "react-native-elements";
 import {
   PrimaryColor,
   BlackColor,
@@ -14,9 +15,46 @@ import {
   secSmallSize,
   TitleSize,
 } from "../../../constants/Sized";
+import LottieView from 'lottie-react-native';
+
 const Summary = ({ navigation }) => {
+  const animation = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const IsGuest = useSelector((state) => state.auth.IsGuest);
+  const orderhandler = () => {
+    if (IsGuest) {
+      setShowModal(true)
+    } else {
+      console.warn("success")
+    }
+  }
   return (
     <View style={styles.container}>
+      {IsGuest && (
+        <>
+
+          {/* start of modal */}
+          <Overlay
+            isVisible={showModal}
+            onBackdropPress={() => setShowModal(false)}
+          >
+            <LottieView
+              autoPlay
+              ref={animation}
+              style={{
+                width: 100,
+                height: 200,
+                backgroundColor: '#eee',
+              }}
+              source={require('../../../img/74164-warning.json')}
+            />
+            <Pressable style={styles.centerizedCol}>
+              <Text>Login Please To Confirm Order</Text>
+            </Pressable>
+          </Overlay>
+          {/* end of modal */}
+        </>
+      )}
       <View>
         <Text style={styles.subformmaintxt1}>Summary</Text>
         <View style={styles.subformmaincontainer}>
@@ -39,8 +77,8 @@ const Summary = ({ navigation }) => {
         <View style={styles.btn}>
           <Button
             color="secondary"
-            // onPress={() => navigation.navigate("Summary1")}
-            // onPress={handleSubmit}
+          // onPress={() => navigation.navigate("Summary1")}
+          // onPress={handleSubmit}
           >
             Order
           </Button>
@@ -111,5 +149,11 @@ const styles = StyleSheet.create({
   previouscontainertxt: {
     fontFamily: "Roboto_700Bold",
     textAlign: "center",
+  },
+  centerizedCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

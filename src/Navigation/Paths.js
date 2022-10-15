@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // the screens
@@ -7,6 +7,7 @@ import HomeNavigation from "../Navigation/HomeNavigation";
 // auth screen
 import Login from "../Screens/Auth/Login";
 import Signup from "../Screens/Auth/Signup";
+import { LogBox } from 'react-native';
 
 // import { useSelector } from "react-redux";
 
@@ -50,7 +51,9 @@ const Renderpages = () => {
 
 function Paths() {
   // const IsLogged = useSelector((state) => state.auth.IsLogged);
-
+  useEffect(() => {
+    LogBox.ignoreAllLogs()
+  })
   return (
     <NavigationContainer>
       {/* {IsLogged ? <Renderpages /> : <Renderpages2 />} */}

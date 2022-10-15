@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Divider, Input, Button } from "@rneui/themed";
 import {
   PrimaryColor,
@@ -14,7 +14,19 @@ import {
   secSmallSize,
   TitleSize,
 } from "../../../constants/Sized";
+import { Overlay } from "react-native-elements";
+import LottieView from 'lottie-react-native';
 const Summary = ({ navigation }) => {
+  const animation = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const IsGuest = useSelector((state) => state.auth.IsGuest);
+  const orderhandler = () => {
+    if (IsGuest) {
+      setShowModal(true)
+    } else {
+      console.warn("success")
+    }
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -39,8 +51,8 @@ const Summary = ({ navigation }) => {
         <View style={styles.btn}>
           <Button
             color="secondary"
-            // onPress={() => navigation.navigate("Summary1")}
-            // onPress={handleSubmit}
+          // onPress={() => navigation.navigate("Summary1")}
+          // onPress={handleSubmit}
           >
             Order
           </Button>
@@ -111,5 +123,11 @@ const styles = StyleSheet.create({
   previouscontainertxt: {
     fontFamily: "Roboto_700Bold",
     textAlign: "center",
+  },
+  centerizedCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

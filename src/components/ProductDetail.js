@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import { width, height, smallSize, secSmallSize } from "../constants/Sized";
@@ -37,21 +38,21 @@ const ProductDetail = ({ navigation, route }) => {
             </Text>
           </View>
           <View style={styles.numbercontainer}>
-            <Pressable
+            <TouchableOpacity
               style={styles.numbercontainernumber}
               onPress={() => increment()}
             >
               <Text style={styles.numbercontainernumbertxt}>+</Text>
-            </Pressable>
+            </TouchableOpacity>
             <View>
               <Text style={styles.thenumberofcount}>{number}</Text>
             </View>
-            <Pressable
+            <TouchableOpacity
               style={styles.numbercontainernumber}
               onPress={() => decrement()}
             >
               <Text style={styles.numbercontainernumbertxt}>-</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
           <Divider style={{ marginVertical: height / 90 }} />
 

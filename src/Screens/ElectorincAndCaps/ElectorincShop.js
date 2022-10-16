@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -11,6 +11,7 @@ import {
 } from "../../constants/Sized";
 import ShoppingItem from "../../components/ShoppingItem";
 import { Divider } from "@rneui/base";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const ElectorincShop = () => {
   const data = [
@@ -57,9 +58,23 @@ const ElectorincShop = () => {
       type: "Electronics",
     },
   ];
+  const marginTop = useSharedValue(0)
+
+  const rstyle = useAnimatedStyle(() => {
+    return {
+      marginTop: marginTop.value,
+    }
+  })
+  useEffect(() => {
+    marginTop.value = withTiming(height / 20, {
+      duration: 2000
+    })
+  }, [])
   return (
     <ScrollView style={{ flex: 1 }}>
-      <View style={styles.container}>
+      <Animated.View style={[styles.container, {
+
+      }, rstyle]}>
         <Text style={styles.maintxt}>Electronics</Text>
         {data.map((item) => (
           <View key={item.key}>
@@ -77,7 +92,7 @@ const ElectorincShop = () => {
             Showing {data.length} Product
           </Text>
         </View>
-      </View>
+      </Animated.View>
     </ScrollView>
   );
 };
@@ -90,7 +105,8 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginTop: height / 20,
+    marginTop: height,
+    // translateY: 100
   },
   maintxt: {
     fontSize: TitleSize / 2,

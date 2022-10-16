@@ -2,7 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // the screens
 import Electronics from "../Screens/Electronics";
-import ElectorincShop from "../Screens/ElectorincAndCaps/ElectorincShop";
+// import ElectorincShop from "../Screens/ElectorincAndCaps/ElectorincShop";
+import ElectornicsProductsNavigation from "./ElectornicsProductsNavigation";
 import CapsProductNavigation from "./CapsProductsNavigation";
 // import CapsShop from "../Screens/ElectorincAndCaps/CapsShop";
 
@@ -20,7 +21,7 @@ const ElectornicAndCapsNavigation = () => {
       />
       <Stack.Screen
         name="Electronicsshop"
-        component={ElectorincShop}
+        component={ElectornicsProductsNavigation}
         options={{
           headerShown: false,
         }}

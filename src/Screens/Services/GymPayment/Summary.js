@@ -31,6 +31,32 @@ const Summary = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
+      {IsGuest && (
+        <>
+
+          {/* start of modal */}
+          <Overlay
+            isVisible={showModal}
+            onBackdropPress={() => setShowModal(false)}
+          >
+            <LottieView
+              autoPlay
+              loop={false}
+              ref={animation}
+              style={{
+                width: 100,
+                height: 200,
+                backgroundColor: '#eee',
+              }}
+              source={require('../../../img/74164-warning.json')}
+            />
+            <Pressable style={styles.centerizedCol}>
+              <Text>Login Please To Confirm Order</Text>
+            </Pressable>
+          </Overlay>
+          {/* end of modal */}
+        </>
+      )}
       <View>
         <Text style={styles.subformmaintxt1}>Summary</Text>
         <View style={styles.subformmaincontainer}>

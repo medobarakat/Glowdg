@@ -6,7 +6,7 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Header, Icon, Button } from "@rneui/themed";
 
 import {
@@ -17,99 +17,136 @@ import {
   smallSize,
 } from "../constants/Sized";
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
+import { Animated } from "react-native";
 
 const Services = ({ navigation }) => {
+  const firstOpacity = useRef(new Animated.Value(0)).current;
+  const SecondOpacity = useRef(new Animated.Value(0)).current;
+  const ThirdOpacity = useRef(new Animated.Value(0)).current;
+  const forthOpacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.stagger(500, [
+      Animated.timing(firstOpacity, {
+        toValue: 1,
+        useNativeDriver: true,
+      }),
+      Animated.timing(SecondOpacity, {
+        toValue: 1,
+        useNativeDriver: true,
+      }),
+      Animated.timing(ThirdOpacity, {
+        toValue: 1,
+        useNativeDriver: true,
+      }),
+      Animated.timing(forthOpacity, {
+        toValue: 1,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+
+
   return (
     <ScrollView>
       <Text style={styles.maintxt}>Services</Text>
-      <View style={styles.card}>
-        <ImageBackground
-          source={require("../img/gym.jpg")}
-          style={styles.cardimg}
-        >
-          <View style={styles.cardtxtcontainer}>
-            <Text style={styles.cardtxtcontainertxt}>Gym Membership Form</Text>
-            <View style={styles.cardtxtcontainer2}>
-              <Button
-                color={WhiteColor}
-                titleStyle={{ color: BlackColor }}
-                onPress={() => navigation.navigate("Gym")}
-                buttonStyle={styles.btn}
-              >
-                Click Here
-              </Button>
+      <Animated.View style={{ opacity: firstOpacity }}>
+        <View style={styles.card}>
+          <ImageBackground
+            source={require("../img/gym.jpg")}
+            style={styles.cardimg}
+          >
+            <View style={styles.cardtxtcontainer}>
+              <Text style={styles.cardtxtcontainertxt}>Gym Membership Form</Text>
+              <View style={styles.cardtxtcontainer2}>
+                <Button
+                  color={WhiteColor}
+                  titleStyle={{ color: BlackColor }}
+                  onPress={() => navigation.navigate("Gym")}
+                  buttonStyle={styles.btn}
+                >
+                  Click Here
+                </Button>
+              </View>
             </View>
-          </View>
-        </ImageBackground>
-      </View>
+          </ImageBackground>
+        </View>
+      </Animated.View>
       {/* /////////////////////////////////// */}
-
-      <View style={styles.card}>
-        <ImageBackground
-          source={require("../img/phonemaintain.jpg")}
-          style={styles.cardimg}
-        >
-          <View style={styles.cardtxtcontainer}>
-            <Text style={styles.cardtxtcontainertxt}>
-              Phone Maintenance Form
-            </Text>
-            <View style={styles.cardtxtcontainer2}>
-              <Button
-                color={WhiteColor}
-                titleStyle={{ color: BlackColor }}
-                onPress={() => navigation.navigate("Phone")}
-                buttonStyle={styles.btn}
-              >
-                Click Here
-              </Button>
+      <Animated.View style={{ opacity: SecondOpacity }}>
+        <View style={styles.card}>
+          <ImageBackground
+            source={require("../img/phonemaintain.jpg")}
+            style={styles.cardimg}
+          >
+            <View style={styles.cardtxtcontainer}>
+              <Text style={styles.cardtxtcontainertxt}>
+                Phone Maintenance Form
+              </Text>
+              <View style={styles.cardtxtcontainer2}>
+                <Button
+                  color={WhiteColor}
+                  titleStyle={{ color: BlackColor }}
+                  onPress={() => navigation.navigate("Phone")}
+                  buttonStyle={styles.btn}
+                >
+                  Click Here
+                </Button>
+              </View>
             </View>
-          </View>
-        </ImageBackground>
-      </View>
+          </ImageBackground>
+        </View>
+      </Animated.View>
+
 
       {/* /////////////////////////////////// */}
+      <Animated.View style={{ opacity: ThirdOpacity }}>
+        <View style={styles.card}>
+          <ImageBackground
+            source={require("../img/carservice.jpg")}
+            style={styles.cardimg}
+          >
+            <View style={styles.cardtxtcontainer}>
+              <Text style={styles.cardtxtcontainertxt}>Car Service Form</Text>
+              <View style={styles.cardtxtcontainer2}>
+                <Button
+                  color={WhiteColor}
+                  titleStyle={{ color: BlackColor }}
+                  onPress={() => navigation.navigate("CarServices")}
+                  buttonStyle={styles.btn}
+                >
+                  Click Here
+                </Button>
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
+      </Animated.View>
 
-      <View style={styles.card}>
-        <ImageBackground
-          source={require("../img/carservice.jpg")}
-          style={styles.cardimg}
-        >
-          <View style={styles.cardtxtcontainer}>
-            <Text style={styles.cardtxtcontainertxt}>Car Service Form</Text>
-            <View style={styles.cardtxtcontainer2}>
-              <Button
-                color={WhiteColor}
-                titleStyle={{ color: BlackColor }}
-                onPress={() => navigation.navigate("CarServices")}
-                buttonStyle={styles.btn}
-              >
-                Click Here
-              </Button>
-            </View>
-          </View>
-        </ImageBackground>
-      </View>
       {/* /////////////////////////////////// */}
-      <View style={styles.card}>
-        <ImageBackground
-          source={require("../img/carwash.jpg")}
-          style={styles.cardimg}
-        >
-          <View style={styles.cardtxtcontainer}>
-            <Text style={styles.cardtxtcontainertxt}>Car Wash Form</Text>
-            <View style={styles.cardtxtcontainer2}>
-              <Button
-                color={WhiteColor}
-                titleStyle={{ color: BlackColor }}
-                onPress={() => navigation.navigate("CarWash")}
-                buttonStyle={styles.btn}
-              >
-                Click Here
-              </Button>
+      <Animated.View style={{ opacity: forthOpacity }}>
+        <View style={styles.card}>
+          <ImageBackground
+            source={require("../img/carwash.jpg")}
+            style={styles.cardimg}
+          >
+            <View style={styles.cardtxtcontainer}>
+              <Text style={styles.cardtxtcontainertxt}>Car Wash Form</Text>
+              <View style={styles.cardtxtcontainer2}>
+                <Button
+                  color={WhiteColor}
+                  titleStyle={{ color: BlackColor }}
+                  onPress={() => navigation.navigate("CarWash")}
+                  buttonStyle={styles.btn}
+                >
+                  Click Here
+                </Button>
+              </View>
             </View>
-          </View>
-        </ImageBackground>
-      </View>
+          </ImageBackground>
+        </View>
+      </Animated.View>
+
     </ScrollView>
   );
 };

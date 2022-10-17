@@ -42,6 +42,7 @@ const Summary = ({ navigation }) => {
           >
             <LottieView
               autoPlay
+              loop={false}
               ref={animation}
               style={{
                 width: 100,

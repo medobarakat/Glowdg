@@ -27,8 +27,10 @@ import axios from "axios";
 import { Formik } from "formik";
 import { Api_url } from "../../uitlties/ApiConstants";
 import { useDispatch } from "react-redux";
+import { handlelogInUser } from "../../features/auth/authSlice";
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch()
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const progress = useSharedValue(0);
@@ -71,7 +73,12 @@ const Login = ({ navigation }) => {
     axios
       .post(url, config)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        dispatch(handlelogInUser(res.data))
+      })
+      .then((res) => {
+        navigation.navigate("home1")
+
       })
       .catch((err) => {
         console.log(err);
@@ -175,8 +182,8 @@ const Login = ({ navigation }) => {
             <Button
               color={PrimaryColor}
               containerStyle={styles.btn}
-              onPress={() => navigation.navigate("home1")}
-            // onPress={handleSubmit}
+              // onPress={() => navigation.navigate("home1")}
+              onPress={handleSubmit}
             >
               Login
             </Button>

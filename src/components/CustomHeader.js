@@ -5,9 +5,14 @@ import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { height, TitleSize, width } from "../constants/Sized";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { handlelogOut } from "../features/auth/authSlice";
+
 const CustomHeader = () => {
+
+  const dispatch = useDispatch()
   const IsGuest = useSelector((state) => state.auth.IsGuest);
+  const data = useSelector((state) => state.auth.data);
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
   const hideMenu = () => setVisible(false);
@@ -19,6 +24,12 @@ const CustomHeader = () => {
   const navigatelogin = () => {
     navigation.navigate("Login");
     hideMenu();
+  }
+
+  const logouthandler = () => {
+    dispatch(handlelogOut())
+    hideMenu();
+    navigation.navigate("home1")
   }
   return (
     <View>
@@ -53,20 +64,19 @@ const CustomHeader = () => {
                   <MenuItem onPress={navigatelogin}>
                     Log In
                   </MenuItem>
-                  <MenuItem onPress={hideMenu}>Log Out</MenuItem>
                   <MenuDivider />
                 </>
               ) : (
                 <>
                   <View style={styles.usercontainer}>
-                    <Text style={styles.usercontainertxt}>Welcome User</Text>
+                    <Text style={styles.usercontainertxt}>Welcome {data.data.display_name}</Text>
                   </View>
 
                   <MenuDivider />
                   <MenuItem onPress={() => navigateto("Settings")}>
                     Settings
                   </MenuItem>
-                  <MenuItem onPress={hideMenu}>Log Out</MenuItem>
+                  <MenuItem onPress={logouthandler}>Log Out</MenuItem>
                   <MenuDivider />
                 </>
               )}

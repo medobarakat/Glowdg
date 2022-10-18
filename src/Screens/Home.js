@@ -18,8 +18,15 @@ import {
   smallSize,
 } from "../constants/Sized";
 import ImageCarousel from "../components/ImageCarousel";
+import { useSelector, useDispatch } from "react-redux";
+import { hidelogoutbanner } from "../features/auth/authSlice";
+import { Overlay } from "react-native-elements";
+import LottieView from 'lottie-react-native';
 
 const Home = ({ navigation }) => {
+  const dispatch = useDispatch()
+  const animation = useRef(null);
+  const logoutbanner = useSelector((state) => state.auth.logoutbanner);
   const data = [
     {
       id: 0,
@@ -43,74 +50,101 @@ const Home = ({ navigation }) => {
       style={{ flex: 1, paddingTop: 20 }}
       source={require("../img/wb.jpg")}
     >
-      <ScrollView>
-        <ImageCarousel data={data} />
-        <View style={styles.titlecontainer}>
-          <Text style={styles.titlecontainertxt}>
-            Welcome to GLOWDG Family , Want to become GLOWDG member ?
-          </Text>
-          <View style={styles.btncontainer}>
-            <Button
-              onPress={() => navigation.navigate("Membership")}
-              title="Learn More"
-              color={"warning"}
-              buttonStyle={{ borderRadius: width / 20 }}
-            />
+      <>
+
+        {logoutbanner && (
+          <>
+            {/* start of modal */}
+            <Overlay
+              isVisible={logoutbanner}
+              onBackdropPress={() => dispatch(hidelogoutbanner())}
+            >
+              <LottieView
+                autoPlay
+                loop={false}
+                ref={animation}
+                style={{
+                  width: 100,
+                  height: 200,
+                  backgroundColor: '#eee',
+                }}
+                source={require('../../src/img/33886-check-okey-done.json')}
+              />
+              <Pressable style={styles.centerizedCol}>
+                <Text>Logout Successfully</Text>
+              </Pressable>
+            </Overlay>
+            {/* end of modal */}
+          </>
+        )}
+        <ScrollView>
+          <ImageCarousel data={data} />
+          <View style={styles.titlecontainer}>
+            <Text style={styles.titlecontainertxt}>
+              Welcome to GLOWDG Family , Want to become GLOWDG member ?
+            </Text>
+            <View style={styles.btncontainer}>
+              <Button
+                onPress={() => navigation.navigate("Membership")}
+                title="Learn More"
+                color={"warning"}
+                buttonStyle={{ borderRadius: width / 20 }}
+              />
+            </View>
           </View>
-        </View>
-        <View>
-          <Pressable
-            style={styles.card}
-            onPress={() => navigation.navigate("Electronics")}
-          >
-            <ImageBackground
-              source={require("../img/electornics.jpg")}
-              style={styles.cardimg}
+          <View>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("Electronics")}
             >
-              <View style={styles.cardtxtcontainer}>
-                <Text style={styles.cardtxtcontainertxt}>
-                  electronics and more !
-                </Text>
-                <View style={styles.cardtxtcontainer2}>
-                  <Text style={styles.cardtxtcontainertxt}>shop now</Text>
-                  <Icon
-                    style={styles.cardtxtcontainericon}
-                    name="arrow-right-alt"
-                    type="MaterialIcons"
-                    color={"black"}
-                  />
+              <ImageBackground
+                source={require("../img/electornics.jpg")}
+                style={styles.cardimg}
+              >
+                <View style={styles.cardtxtcontainer}>
+                  <Text style={styles.cardtxtcontainertxt}>
+                    electronics and more !
+                  </Text>
+                  <View style={styles.cardtxtcontainer2}>
+                    <Text style={styles.cardtxtcontainertxt}>shop now</Text>
+                    <Icon
+                      style={styles.cardtxtcontainericon}
+                      name="arrow-right-alt"
+                      type="MaterialIcons"
+                      color={"black"}
+                    />
+                  </View>
                 </View>
-              </View>
-            </ImageBackground>
-          </Pressable>
-          <Pressable
-            style={styles.card}
-            onPress={() => navigation.navigate("Services")}
-          >
-            <ImageBackground
-              source={require("../img/services.jpg")}
-              style={styles.cardimg}
+              </ImageBackground>
+            </Pressable>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("Services")}
             >
-              <View style={styles.cardtxtcontainer}>
-                <Text style={styles.cardtxtcontainertxt}>services</Text>
-              </View>
-            </ImageBackground>
-          </Pressable>
-          <Pressable
-            style={styles.card}
-            onPress={() => navigation.navigate("Caps")}
-          >
-            <ImageBackground
-              source={require("../img/caps.jpg")}
-              style={styles.cardimg}
+              <ImageBackground
+                source={require("../img/services.jpg")}
+                style={styles.cardimg}
+              >
+                <View style={styles.cardtxtcontainer}>
+                  <Text style={styles.cardtxtcontainertxt}>services</Text>
+                </View>
+              </ImageBackground>
+            </Pressable>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("Caps")}
             >
-              <View style={styles.cardtxtcontainer}>
-                <Text style={styles.cardtxtcontainertxt}>Caps !</Text>
-              </View>
-            </ImageBackground>
-          </Pressable>
-          <Divider color={"black"} />
-          {/* <View style={styles.minicardcontainermain}>
+              <ImageBackground
+                source={require("../img/caps.jpg")}
+                style={styles.cardimg}
+              >
+                <View style={styles.cardtxtcontainer}>
+                  <Text style={styles.cardtxtcontainertxt}>Caps !</Text>
+                </View>
+              </ImageBackground>
+            </Pressable>
+            <Divider color={"black"} />
+            {/* <View style={styles.minicardcontainermain}>
             <View style={styles.minicardcontainer}>
               <View style={styles.minicardleft}>
                 <Icon1 style={styles.minicardlefticon} />
@@ -154,8 +188,10 @@ const Home = ({ navigation }) => {
               </View>
             </View>
           </View> */}
-        </View>
-      </ScrollView>
+          </View>
+        </ScrollView>
+      </>
+
     </ImageBackground>
   );
 };
@@ -238,5 +274,11 @@ const styles = StyleSheet.create({
   minicardright2: {
     fontSize: smallSize,
     fontFamily: "Roboto_500Medium",
+  },
+  centerizedCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

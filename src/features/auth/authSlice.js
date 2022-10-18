@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
-  IsGuest: true, //!dont forget to return it to true 
+  IsGuest: true,
   IsLogged: false,
   Token: null,
+  logoutbanner: false
 };
 
 export const authSlice = createSlice({
@@ -17,16 +18,20 @@ export const authSlice = createSlice({
       state.data = action.payload;
     },
 
-    handlelogInGuest: (state, action) => {
-      state.IsLogged = false;
-      state.IsGuest = true;
-      state.data = action.payload;
+    // showlogoutbanner: (state) => {
+    //   state.logoutbanner = true
+    // },
+
+    hidelogoutbanner: (state) => {
+      state.logoutbanner = false
     },
 
     handlelogOut: (state) => {
       state.IsLogged = false;
-      state.IsGuest = false;
+      state.IsGuest = true;
       state.date = null;
+      state.logoutbanner = true
+
     },
   },
 });
@@ -34,8 +39,8 @@ export const authSlice = createSlice({
 export const {
   handlelogInUser,
   handlelogInMerchant,
-  handlelogInGuest,
   handlelogOut,
+  hidelogoutbanner
 } = authSlice.actions;
 
 export default authSlice.reducer;

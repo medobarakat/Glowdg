@@ -44,21 +44,23 @@ const Signup = ({ navigation }) => {
       Api_url +
       `?uname=${username}&upass=${password}&uemail=${email}&flg=create`;
 
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-      },
-    };
-    setShowModal(true);
-    axios
-      .post(url, config)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(url)
+    //! un comment these
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     Accept: "application/json",
+    //   },
+    // };
+    // setShowModal(true);
+    // axios
+    //   .post(url, config)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
@@ -143,7 +145,7 @@ const Signup = ({ navigation }) => {
                 onPress={handleSubmit}
                 color={PrimaryColor}
                 containerStyle={styles.btn}
-                // onPress={() => navigation.goBack()}
+              // onPress={() => navigation.goBack()}
               >
                 Sign Up
               </Button>

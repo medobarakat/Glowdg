@@ -31,7 +31,7 @@ import { handlelogInUser } from "../../features/auth/authSlice";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch()
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const progress = useSharedValue(0);
   const reanimatedstyle = useAnimatedStyle(() => {
@@ -44,21 +44,6 @@ const Login = ({ navigation }) => {
     progress.value = withTiming(height / 7, { duration: 3000 });
   }, []);
 
-  // const HandleLogIn = async (username, password) => {
-  //   axios
-  //     .post(Api_url, {
-  //       params: {
-  //         username,
-  //         password,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   const HandleLogIn = async (username, password) => {
     const url = Api_url + `?uname=${username}&upass=${password}&flg=bUa5J4`;
@@ -71,7 +56,7 @@ const Login = ({ navigation }) => {
     };
     setShowModal(true);
     axios
-      .post(url, config)
+      .get(url, config)
       .then((res) => {
         console.log(res.data);
         dispatch(handlelogInUser(res.data))
@@ -82,26 +67,10 @@ const Login = ({ navigation }) => {
       })
       .catch((err) => {
         console.log(err);
+        setShowModal(false)
+        setError(true)
       });
   };
-
-  // const UserLogin = async (username, password) =>
-  //   await axios({
-  //     method: "POST",
-  //     url: Api_url,
-  //     params: {
-  //       username,
-  //       password,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       console.log(res);
-  //       dispatch(handlelogIn(res.data))
-  //        navigate("/admin/home");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
@@ -168,11 +137,11 @@ const Login = ({ navigation }) => {
                 )}
               </View>
               <View>
-                {error === undefined && (
+                {error === true && (
                   <View style={styles.errmessage}>
                     <Text style={styles.errmessagetxt}>
                       {" "}
-                      Check Your Connection and retry to log in{" "}
+                      Check Your Connection / User name and Password and retry to log in{" "}
                     </Text>
                   </View>
                 )}
@@ -284,5 +253,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Roboto_500Medium",
     color: "red",
+    lineHeight: 25
   },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -18,13 +18,15 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import axios from "axios";
-
+import { Overlay } from "react-native-elements";
+import LottieView from 'lottie-react-native';
 import { Formik } from "formik";
 import { Api_url } from "../../uitlties/ApiConstants";
 import { useDispatch } from "react-redux";
 
 const Signup = ({ navigation }) => {
   const dispatch = useDispatch();
+  const animation = useRef(null);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const progress = useSharedValue(0);
@@ -43,28 +45,52 @@ const Signup = ({ navigation }) => {
     const url =
       Api_url +
       `?uname=${username}&upass=${password}&uemail=${email}&flg=create`;
-
-    console.log(url)
-    //! un comment these
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //     Accept: "application/json",
-    //   },
-    // };
-    // setShowModal(true);
-    // axios
-    //   .post(url, config)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    };
+    axios
+      .post(url, config)
+      .then((res) => {
+        setShowModal(true);
+        console.log(res)
+      })
+      .catch((err) => {
+        setError(err)
+        console.log(err);
+      });
   };
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
+
+      {showModal && (
+        <>
+          {/* start of modal */}
+          <Overlay
+            isVisible={showModal}
+            onBackdropPress={() => setShowModal(false)}
+          >
+            <LottieView
+              autoPlay
+              loop={false}
+              ref={animation}
+              style={{
+                width: 100,
+                height: 200,
+                backgroundColor: '#eee',
+              }}
+              source={require('../../img/33886-check-okey-done.json')}
+            />
+            <Pressable style={styles.centerizedCol}>
+              <Text>Sign Up successfully</Text>
+            </Pressable>
+          </Overlay>
+          {/* end of modal */}
+        </>
+      )}
       <Formik
         initialValues={{
           username: "",
@@ -88,6 +114,28 @@ const Signup = ({ navigation }) => {
               </View>
               <Text style={styles.firstsettxt}>Create New Account</Text>
             </Animated.View>
+            {/* for error handling */}
+
+            <View>
+              <View>
+                {error && (
+                  <View style={styles.errmessage}>
+                    <Text style={styles.errmessagetxt}>{error}</Text>
+                  </View>
+                )}
+              </View>
+              <View>
+                {error === undefined && (
+                  <View style={styles.errmessage}>
+                    <Text style={styles.errmessagetxt}>
+                      {" "}
+                      Check Your Connection and retry to log in{" "}
+                    </Text>
+                  </View>
+                )}
+              </View>
+            </View>
+            {/* end of error handling */}
             <View style={styles.inputcontainer}>
               <Input
                 style={styles.input}
@@ -119,28 +167,7 @@ const Signup = ({ navigation }) => {
                 onChangeText={handleChange("confirmPassword")}
                 onBlur={handleBlur("confirmPassword")}
               />
-              {/* for error handling */}
 
-              <View>
-                <View>
-                  {error && (
-                    <View style={styles.errmessage}>
-                      <Text style={styles.errmessagetxt}>{error}</Text>
-                    </View>
-                  )}
-                </View>
-                <View>
-                  {error === undefined && (
-                    <View style={styles.errmessage}>
-                      <Text style={styles.errmessagetxt}>
-                        {" "}
-                        Check Your Connection and retry to log in{" "}
-                      </Text>
-                    </View>
-                  )}
-                </View>
-              </View>
-              {/* end of error handling */}
               <Button
                 onPress={handleSubmit}
                 color={PrimaryColor}
@@ -232,5 +259,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Roboto_500Medium",
     color: "red",
+  },
+  centerizedCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

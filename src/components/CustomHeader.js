@@ -31,6 +31,10 @@ const CustomHeader = () => {
     hideMenu();
     navigation.navigate("home1")
   }
+
+  const langhandler = () => {
+    console.warn("lang changing")
+  }
   return (
     <View>
       <Header
@@ -54,6 +58,9 @@ const CustomHeader = () => {
               anchor={<Icon onPress={showMenu} name="person" color="white" />}
               onRequestClose={hideMenu}
             >
+              <MenuItem onPress={langhandler}>
+                Change Language
+              </MenuItem>
               {IsGuest ? (
                 <>
                   <View style={styles.usercontainer}>

@@ -25,7 +25,7 @@ const ProductDetail = ({ navigation, route }) => {
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.imgcontainer}>
-          <Image source={image} style={styles.img} />
+          <Image source={{ uri: image }} style={styles.img} />
         </View>
         <View style={styles.txtcontainer}>
           <Text style={styles.typetxt}>{type}</Text>

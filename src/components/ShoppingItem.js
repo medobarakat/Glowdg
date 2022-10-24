@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { height, smallSize, width, secSmallSize } from "../constants/Sized";
 import { useNavigation } from "@react-navigation/native";
+import { BlackColor } from "../constants/Colors";
 const ShoppingItem = ({ name, price, image, type }) => {
   const navigation = useNavigation();
   return (
@@ -16,8 +17,8 @@ const ShoppingItem = ({ name, price, image, type }) => {
         })
       }
     >
-      <View>
-        <Image source={image} style={styles.img} />
+      <View style={styles.imgcontainer}>
+        <Image source={{ uri: image }} style={styles.img} />
       </View>
       <View style={styles.container2}>
         <Text style={styles.txt1}>{name}</Text>
@@ -33,6 +34,17 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     marginVertical: width / 50,
+    borderColor: BlackColor,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 4,
+    width: width / 1.2
+  },
+  imgcontainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: height / 20
   },
   img: {
     width: width / 2,

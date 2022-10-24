@@ -11,8 +11,34 @@ import {
 } from "../../constants/Sized";
 import ShoppingItem from "../../components/ShoppingItem";
 import { Divider } from "@rneui/base";
-
+import axios from "axios";
+import { Caps_Api_Url } from "../../uitlties/ApiConstants"
 const CapsShop = () => {
+
+  const fetchingData = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    };
+    setShowModal(true);
+    axios
+      .get(Caps_Api_Url, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true)
+      });
+  };
+
+
+
+
+
+
   const data = [
     {
       id: 1,

@@ -22,8 +22,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { hidelogoutbanner } from "../features/auth/authSlice";
 import { Overlay } from "react-native-elements";
 import LottieView from 'lottie-react-native';
+import { useTranslation } from "react-i18next";
 
 const Home = ({ navigation }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch()
   const animation = useRef(null);
   const logoutbanner = useSelector((state) => state.auth.logoutbanner);
@@ -78,6 +80,8 @@ const Home = ({ navigation }) => {
           </>
         )}
         <ScrollView>
+          {/* //! just for testing */}
+          {/* <Text>{t("hi")}</Text> */}
           <ImageCarousel data={data} />
           <View style={styles.titlecontainer}>
             <Text style={styles.titlecontainertxt}>

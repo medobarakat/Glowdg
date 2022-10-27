@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -14,27 +14,31 @@ import { Divider } from "@rneui/base";
 import axios from "axios";
 import { Caps_Api_Url } from "../../uitlties/ApiConstants"
 const CapsShop = () => {
-
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false);
   const fetchingData = async () => {
+    setLoading(true)
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Accept: "application/json",
       },
     };
-    setShowModal(true);
     axios
       .get(Caps_Api_Url, config)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.products);
+        setMyData(res.data.products)
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
         setError(true)
       });
   };
-
-
+  useEffect(() => {
+    fetchingData()
+  }, [])
 
 
 
@@ -87,8 +91,8 @@ const CapsShop = () => {
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.maintxt}>Caps</Text>
-        {data.map((item) => (
-          <View key={item.key}>
+        {/* {data.map((item) => (
+          <View key={item.id}>
             <ShoppingItem
               name={item.name}
               price={item.price}
@@ -96,7 +100,7 @@ const CapsShop = () => {
               type={item.type}
             />
           </View>
-        ))}
+        ))} */}
         <Divider />
         <View style={styles.lastcontainer}>
           <Text style={styles.lastcontainertxt}>

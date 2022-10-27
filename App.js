@@ -19,6 +19,7 @@ import {
 import Paths from "./src/Navigation/Paths";
 import { store } from "./src/features/store";
 import { Provider } from "react-redux";
+import "./i18n"
 
 export default function App() {
   let [fontsLoaded] = useFonts({

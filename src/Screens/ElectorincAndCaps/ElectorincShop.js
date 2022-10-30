@@ -102,7 +102,7 @@ const ElectorincShop = () => {
       {
         loading ? (
           <>
-            <ActivityIndicator />
+            <ActivityIndicator size={"large"} />
           </>
 
         ) : (

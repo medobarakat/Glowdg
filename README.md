@@ -1,6 +1,6 @@
 # GlowDg E-Commence App
 
-An React Native Expo Manged App
+An React Native Expo Manged App..
 
  this app was created by : Eng:Ahmed Barakat
  for contact call or whatsapp me on +201013782744

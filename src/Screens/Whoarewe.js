@@ -9,11 +9,13 @@ import {
   secSmallSize,
   TitleSize,
 } from "../constants/Sized";
+import { useTranslation } from "react-i18next";
 
 const Whoarewe = () => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text style={styles.maintxt}>Who We Are</Text>
+      <Text style={styles.maintxt}>{t("WhoWeAre")}</Text>
     </View>
   );
 };

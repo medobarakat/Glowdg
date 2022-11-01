@@ -18,8 +18,10 @@ import {
 } from "../constants/Sized";
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import { Animated } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const Services = ({ navigation }) => {
+  const { t } = useTranslation();
   const firstOpacity = useRef(new Animated.Value(0)).current;
   const SecondOpacity = useRef(new Animated.Value(0)).current;
   const ThirdOpacity = useRef(new Animated.Value(0)).current;
@@ -45,11 +47,9 @@ const Services = ({ navigation }) => {
     ]).start();
   }, []);
 
-
-
   return (
     <ScrollView>
-      <Text style={styles.maintxt}>Services</Text>
+      <Text style={styles.maintxt}>{t("services")}</Text>
       <Animated.View style={{ opacity: firstOpacity }}>
         <View style={styles.card}>
           <ImageBackground
@@ -57,7 +57,9 @@ const Services = ({ navigation }) => {
             style={styles.cardimg}
           >
             <View style={styles.cardtxtcontainer}>
-              <Text style={styles.cardtxtcontainertxt}>Gym Membership Form</Text>
+              <Text style={styles.cardtxtcontainertxt}>
+                {t("GymMembershipForm")}
+              </Text>
               <View style={styles.cardtxtcontainer2}>
                 <Button
                   color={WhiteColor}
@@ -65,7 +67,7 @@ const Services = ({ navigation }) => {
                   onPress={() => navigation.navigate("Gym")}
                   buttonStyle={styles.btn}
                 >
-                  Click Here
+                  {t("ClickHere")}
                 </Button>
               </View>
             </View>
@@ -81,7 +83,7 @@ const Services = ({ navigation }) => {
           >
             <View style={styles.cardtxtcontainer}>
               <Text style={styles.cardtxtcontainertxt}>
-                Phone Maintenance Form
+                {t("PhoneMaintenanceForm")}
               </Text>
               <View style={styles.cardtxtcontainer2}>
                 <Button
@@ -90,14 +92,13 @@ const Services = ({ navigation }) => {
                   onPress={() => navigation.navigate("Phone")}
                   buttonStyle={styles.btn}
                 >
-                  Click Here
+                  {t("ClickHere")}
                 </Button>
               </View>
             </View>
           </ImageBackground>
         </View>
       </Animated.View>
-
 
       {/* /////////////////////////////////// */}
       <Animated.View style={{ opacity: ThirdOpacity }}>
@@ -107,7 +108,9 @@ const Services = ({ navigation }) => {
             style={styles.cardimg}
           >
             <View style={styles.cardtxtcontainer}>
-              <Text style={styles.cardtxtcontainertxt}>Car Service Form</Text>
+              <Text style={styles.cardtxtcontainertxt}>
+                {t("CarServiceForm")}
+              </Text>
               <View style={styles.cardtxtcontainer2}>
                 <Button
                   color={WhiteColor}
@@ -115,7 +118,7 @@ const Services = ({ navigation }) => {
                   onPress={() => navigation.navigate("CarServices")}
                   buttonStyle={styles.btn}
                 >
-                  Click Here
+                  {t("ClickHere")}
                 </Button>
               </View>
             </View>
@@ -131,7 +134,7 @@ const Services = ({ navigation }) => {
             style={styles.cardimg}
           >
             <View style={styles.cardtxtcontainer}>
-              <Text style={styles.cardtxtcontainertxt}>Car Wash Form</Text>
+              <Text style={styles.cardtxtcontainertxt}>{t("CarWashForm")}</Text>
               <View style={styles.cardtxtcontainer2}>
                 <Button
                   color={WhiteColor}
@@ -139,14 +142,13 @@ const Services = ({ navigation }) => {
                   onPress={() => navigation.navigate("CarWash")}
                   buttonStyle={styles.btn}
                 >
-                  Click Here
+                  {t("ClickHere")}
                 </Button>
               </View>
             </View>
           </ImageBackground>
         </View>
       </Animated.View>
-
     </ScrollView>
   );
 };
@@ -194,5 +196,6 @@ const styles = StyleSheet.create({
     borderRadius: height / 50,
     marginTop: height / 35,
     padding: width / 40,
+    fontFamily: "Roboto_500Medium",
   },
 });

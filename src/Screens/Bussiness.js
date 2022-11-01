@@ -9,11 +9,14 @@ import {
   secSmallSize,
   TitleSize,
 } from "../constants/Sized";
+import { useTranslation } from "react-i18next";
 
 const Bussiness = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.maintxt}>Business Inquiries</Text>
+      <Text style={styles.maintxt}>{t("BusinessInquiries")}</Text>
     </View>
   );
 };

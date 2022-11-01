@@ -14,7 +14,10 @@ import {
   TitleSize,
 } from "../constants/Sized";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
+
 const Membership = () => {
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const HandleSubmitData = async (
@@ -58,7 +61,7 @@ const Membership = () => {
       {/* end of modal */}
       <View style={styles.firstset}>
         <View style={styles.firstitle}>
-          <Text style={styles.firstitletxt}>GLOWDG membership</Text>
+          <Text style={styles.firstitletxt}>{t("GLOWDGmembership")}</Text>
         </View>
       </View>
 
@@ -86,7 +89,7 @@ const Membership = () => {
               values.data
             );
           } else {
-            setError("Complete The Form Please");
+            setError(t("formcomplete"));
           }
         }}
       >
@@ -98,35 +101,35 @@ const Membership = () => {
           >
             <Input
               style={styles.input}
-              placeholder="First name"
+              placeholder={t("Firstname")}
               value={values.username}
               onChangeText={handleChange("username")}
               onBlur={handleBlur("username")}
             />
             <Input
               style={styles.input}
-              placeholder="Last name"
+              placeholder={t("Lastname")}
               value={values.lastname}
               onChangeText={handleChange("lastname")}
               onBlur={handleBlur("lastname")}
             />
             <Input
               style={styles.input}
-              placeholder="Numbers"
+              placeholder={t("Numbers")}
               value={values.numbers}
               onChangeText={handleChange("numbers")}
               onBlur={handleBlur("numbers")}
             />
             <Input
               style={styles.input}
-              placeholder="Location"
+              placeholder={t("Location")}
               value={values.location}
               onChangeText={handleChange("location")}
               onBlur={handleBlur("location")}
             />
             <Input
               style={styles.input}
-              placeholder="Any Specific Request"
+              placeholder={t("AnySpecificRequest")}
               value={values.data}
               onChangeText={handleChange("data")}
               onBlur={handleBlur("data")}
@@ -146,7 +149,7 @@ const Membership = () => {
                 {error === undefined && (
                   <View style={styles.errmessage}>
                     <Text style={styles.errmessagetxt}>
-                      Check Your Connection and retry to log in
+                      {t("checkconnection")}
                     </Text>
                   </View>
                 )}
@@ -158,7 +161,7 @@ const Membership = () => {
               containerStyle={styles.btn}
               onPress={handleSubmit}
             >
-              Submit
+              {t("Submit")}
             </Button>
           </Animated.View>
         )}

@@ -17,7 +17,10 @@ import {
 } from "../constants/Sized";
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import { Animated } from "react-native";
+import { useTranslation } from "react-i18next";
+
 const Electronics = ({ navigation }) => {
+  const { t } = useTranslation();
   useEffect(() => {
     Animated.stagger(500, [
       Animated.timing(firstOpacity, {
@@ -41,7 +44,7 @@ const Electronics = ({ navigation }) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <Animated.View style={{ opacity: firstOpacity }}>
-        <Text style={styles.maintxt}>Electronics & More</Text>
+        <Text style={styles.maintxt}>{t("electronicsandmore")}</Text>
       </Animated.View>
       <Animated.View style={{ opacity: SecondOpacity }}>
         <Pressable
@@ -54,10 +57,10 @@ const Electronics = ({ navigation }) => {
           >
             <View style={styles.cardtxtcontainer}>
               <Text style={styles.cardtxtcontainertxt}>
-                electronics and more !
+                {t("electronicsandmore")}
               </Text>
               <View style={styles.cardtxtcontainer2}>
-                <Text style={styles.cardtxtcontainertxt}>shop now</Text>
+                <Text style={styles.cardtxtcontainertxt}>{t("shopnow")}</Text>
                 <Icon
                   style={styles.cardtxtcontainericon}
                   name="arrow-right-alt"
@@ -79,7 +82,7 @@ const Electronics = ({ navigation }) => {
             style={styles.cardimg}
           >
             <View style={styles.cardtxtcontainer}>
-              <Text style={styles.cardtxtcontainertxt}>Caps !</Text>
+              <Text style={styles.cardtxtcontainertxt}>{t("caps")}</Text>
             </View>
           </ImageBackground>
         </Pressable>

@@ -1,3 +1,29 @@
 {
-    "hi":"hello"
+    "hi":"hello",
+    "LogoutSuccessfully":"Logout Successfully",
+    "introtxt":"Welcome to GLOWDG Family , Want to become GLOWDG member ?",
+    "learnmore":"Learn More",
+    "electronicsandmore":"electronics and more !",
+    "shopnow":"shop now",
+    "services":"services",
+    "Caps":"Caps !",
+    "GLOWDGmembership":"GLOWDG membership",
+    "Firstname":"First name",
+    "Lastname":"Last name",
+    "Numbers":"Numbers",
+    "Location":"Location",
+    "AnySpecificRequest":"Any Specific Request",
+    "checkconnection":"Check Your Connection and retry to log in",
+    "Submit":"Submit",
+    "Submitted":"Submitted",
+    "formcomplete":"Complete The Form Please",
+    "WhoWeAre":"Who We Are",
+    "GymMembershipForm":"Gym Membership Form",
+    "ClickHere":"Click Here",
+    "PhoneMaintenanceForm":"Phone Maintenance Form",
+    "CarServiceForm":"Car Service Form",
+    "CarWashForm":"Car Wash Form",
+    "caps":"Caps !",
+    "BusinessInquiries":"Business Inquiries"
+    
 }

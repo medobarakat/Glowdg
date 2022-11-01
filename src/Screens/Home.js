@@ -21,12 +21,12 @@ import ImageCarousel from "../components/ImageCarousel";
 import { useSelector, useDispatch } from "react-redux";
 import { hidelogoutbanner } from "../features/auth/authSlice";
 import { Overlay } from "react-native-elements";
-import LottieView from 'lottie-react-native';
+import LottieView from "lottie-react-native";
 import { useTranslation } from "react-i18next";
 
 const Home = ({ navigation }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const animation = useRef(null);
   const logoutbanner = useSelector((state) => state.auth.logoutbanner);
   const data = [
@@ -53,7 +53,6 @@ const Home = ({ navigation }) => {
       source={require("../img/wb.jpg")}
     >
       <>
-
         {logoutbanner && (
           <>
             {/* start of modal */}
@@ -68,12 +67,12 @@ const Home = ({ navigation }) => {
                 style={{
                   width: 100,
                   height: 200,
-                  backgroundColor: '#eee',
+                  backgroundColor: "#eee",
                 }}
-                source={require('../../src/img/33886-check-okey-done.json')}
+                source={require("../../src/img/33886-check-okey-done.json")}
               />
               <Pressable style={styles.centerizedCol}>
-                <Text>Logout Successfully</Text>
+                <Text>{t("Logout Successfully")}</Text>
               </Pressable>
             </Overlay>
             {/* end of modal */}
@@ -84,13 +83,11 @@ const Home = ({ navigation }) => {
           {/* <Text>{t("hi")}</Text> */}
           <ImageCarousel data={data} />
           <View style={styles.titlecontainer}>
-            <Text style={styles.titlecontainertxt}>
-              Welcome to GLOWDG Family , Want to become GLOWDG member ?
-            </Text>
+            <Text style={styles.titlecontainertxt}>{t("introtxt")}</Text>
             <View style={styles.btncontainer}>
               <Button
                 onPress={() => navigation.navigate("Membership")}
-                title="Learn More"
+                title={t("learnmore")}
                 color={"warning"}
                 buttonStyle={{ borderRadius: width / 20 }}
               />
@@ -107,10 +104,12 @@ const Home = ({ navigation }) => {
               >
                 <View style={styles.cardtxtcontainer}>
                   <Text style={styles.cardtxtcontainertxt}>
-                    electronics and more !
+                    {t("electronicsandmore")}
                   </Text>
                   <View style={styles.cardtxtcontainer2}>
-                    <Text style={styles.cardtxtcontainertxt}>shop now</Text>
+                    <Text style={styles.cardtxtcontainertxt}>
+                      {t("shopnow")}
+                    </Text>
                     <Icon
                       style={styles.cardtxtcontainericon}
                       name="arrow-right-alt"
@@ -130,7 +129,9 @@ const Home = ({ navigation }) => {
                 style={styles.cardimg}
               >
                 <View style={styles.cardtxtcontainer}>
-                  <Text style={styles.cardtxtcontainertxt}>services</Text>
+                  <Text style={styles.cardtxtcontainertxt}>
+                    {t("services")}
+                  </Text>
                 </View>
               </ImageBackground>
             </Pressable>
@@ -143,7 +144,7 @@ const Home = ({ navigation }) => {
                 style={styles.cardimg}
               >
                 <View style={styles.cardtxtcontainer}>
-                  <Text style={styles.cardtxtcontainertxt}>Caps !</Text>
+                  <Text style={styles.cardtxtcontainertxt}>{t("Caps")}</Text>
                 </View>
               </ImageBackground>
             </Pressable>
@@ -195,7 +196,6 @@ const Home = ({ navigation }) => {
           </View>
         </ScrollView>
       </>
-
     </ImageBackground>
   );
 };

@@ -1,3 +1,30 @@
 {
-    "hi":"اهلا بيك"
+    "hi":"اهلا بيك",
+    "LogoutSuccessfully":"تم تسجيل الخروج",
+    "introtxt":"مرحبًا بك في عائلة Glowdg ، هل تريد أن تصبح عضوًا في Glowdg؟",
+    "learnmore":"اعرف اكثر",
+    "electronicsandmore":"الإلكترونيات والمزيد",
+    "shopnow":"تسوق الان",
+    "services":"الخدمات",
+    "Caps":"القبعات !",
+    "GLOWDGmembership":"GLOWDG عضويه",
+    "Firstname":"الاسم ",
+    "Lastname":"اسم العائله",
+    "Numbers":"الارقام",
+    "Location":"الموقع",
+    "AnySpecificRequest":"اي طلبات مخصصه",
+    "checkconnection":"تحقق من اتصالك للانترنت ثم عاود المحاوله",
+    "Submit":"تاكيد",
+    "Submitted":"تم التاكيد",
+    "formcomplete":"قم باستكمال البيانات من فضلك",
+    "WhoWeAre":"من نحن",
+    "GymMembershipForm":"عضوية الصالة الرياضية",
+    "ClickHere":"اضغط هنا",
+    "PhoneMaintenanceForm":"صيانه الهواتف النقاله",
+    "CarServiceForm":"خدمه خدمات السيارات",
+    "CarWashForm":"خدمه غسيل السيارات",
+    "caps":"قبعات !",
+    "BusinessInquiries":"متطلبات العمل"
+
+
 }

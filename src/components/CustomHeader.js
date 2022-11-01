@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import { Header, Icon } from "@rneui/themed";
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
@@ -7,10 +7,13 @@ import { height, TitleSize, width } from "../constants/Sized";
 import { Menu, MenuItem, MenuDivider } from "react-native-material-menu";
 import { useSelector, useDispatch } from "react-redux";
 import { handlelogOut } from "../features/auth/authSlice";
+import { useTranslation } from "react-i18next";
+import EnPic from "../img/en.png";
+import ArPic from "../img/ar.png";
 
 const CustomHeader = () => {
-
-  const dispatch = useDispatch()
+  const { i18n } = useTranslation();
+  const dispatch = useDispatch();
   const IsGuest = useSelector((state) => state.auth.IsGuest);
   const data = useSelector((state) => state.auth.data);
   const [visible, setVisible] = useState(false);
@@ -24,17 +27,25 @@ const CustomHeader = () => {
   const navigatelogin = () => {
     navigation.navigate("Login");
     hideMenu();
-  }
+  };
 
   const logouthandler = () => {
-    dispatch(handlelogOut())
+    dispatch(handlelogOut());
     hideMenu();
-    navigation.navigate("home1")
-  }
+    navigation.navigate("home1");
+  };
 
   const langhandler = () => {
-    console.warn("lang changing")
-  }
+    console.warn(i18n.language);
+  };
+
+  const switchToAr = () => {
+    i18n.changeLanguage("ar");
+  };
+  const switchToEn = () => {
+    i18n.changeLanguage("en");
+  };
+
   return (
     <View>
       <Header
@@ -59,7 +70,29 @@ const CustomHeader = () => {
               onRequestClose={hideMenu}
             >
               <MenuItem onPress={langhandler}>
-                Change Language
+                {i18n.language === "ar" ? (
+                  <TouchableOpacity onPress={switchToEn}>
+                    <View style={styles.logoContainer}>
+                      <Text style={styles.logotxt}>To En</Text>
+                      <Image
+                        source={EnPic}
+                        style={styles.langlogo}
+                        width={10}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity onPress={switchToAr}>
+                    <View style={styles.logoContainer}>
+                      <Text style={styles.logotxt}>To Ar</Text>
+                      <Image
+                        source={ArPic}
+                        style={styles.langlogo}
+                        width={10}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                )}
               </MenuItem>
               {IsGuest ? (
                 <>
@@ -68,15 +101,15 @@ const CustomHeader = () => {
                   </View>
 
                   <MenuDivider />
-                  <MenuItem onPress={navigatelogin}>
-                    Log In
-                  </MenuItem>
+                  <MenuItem onPress={navigatelogin}>Log In</MenuItem>
                   <MenuDivider />
                 </>
               ) : (
                 <>
                   <View style={styles.usercontainer}>
-                    <Text style={styles.usercontainertxt}>Welcome {data.data.display_name}</Text>
+                    <Text style={styles.usercontainertxt}>
+                      Welcome {data.data.display_name}
+                    </Text>
                   </View>
 
                   <MenuDivider />
@@ -87,8 +120,6 @@ const CustomHeader = () => {
                   <MenuDivider />
                 </>
               )}
-
-
             </Menu>
           </View>
         }
@@ -110,5 +141,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     paddingVertical: width / 40,
+  },
+  logoContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  logotxt: {
+    fontFamily: "Roboto_400Regular",
+  },
+  langlogo: {
+    width: 20,
+    height: 20,
+    marginLeft: width / 50,
+  },
+  usercontainertxt: {
+    fontFamily: "Roboto_400Regular",
   },
 });

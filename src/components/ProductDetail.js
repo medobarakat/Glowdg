@@ -5,7 +5,7 @@ import {
   Image,
   Pressable,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import { width, height, smallSize, secSmallSize } from "../constants/Sized";
@@ -59,7 +59,7 @@ const ProductDetail = ({ navigation, route }) => {
           <View style={styles.btncontainer}>
             <Button
               onPress={() => navigation.goBack()}
-              title="Add To Cart"
+              title="Order"
               color={"warning"}
               buttonStyle={{ borderRadius: width / 40, width: width / 2 }}
             />

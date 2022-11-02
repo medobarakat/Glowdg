@@ -36,7 +36,16 @@
     "welcomeguest":"Welcome Guest",
     "LogIn":"Log In",
     "Welcome":"Welcome",
-    "Settings":"Settings"
+    "Settings":"Settings",
+    "dinar":"Dinar",
+    "Category":"Category :",
+    "Order":"Order",
+    "SelectGym":"Select Gym",
+    "Quantitiy":"Quantitiy",
+    "silverstartadress":"Silver star - Hamdan Street , Abu Dhabi",
+    "Dirham":"Dirham",
+    "Total":"Total :",
+    "PreviousStep":"Previous Step"
     
     
 }

@@ -10,9 +10,11 @@ import {
   TitleSize,
 } from "../constants/Sized";
 import { Divider, Input, Button } from "@rneui/themed";
+import { useTranslation } from "react-i18next";
 
 const SummaryComponent = ({ navigation, name }) => {
   // const { name } = route.params;
+  const { t } = useTranslation();
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
@@ -21,23 +23,25 @@ const SummaryComponent = ({ navigation, name }) => {
           <View>
             <View style={styles.subformmaincontainer}>
               <View style={styles.subformmain}>
-                <Text style={styles.subformmaintxt}>Select Gym</Text>
+                <Text style={styles.subformmaintxt}>{t("SelectGym")}</Text>
               </View>
               <View style={styles.subformmain}>
                 <Text style={styles.subformmaintxt}>
-                  Silver star - Hamdan Street , Abu Dhabi
+                  {t("silverstartadress")}
                 </Text>
               </View>
               <View style={styles.subformmain}>
-                <Text style={styles.subformmaintxt}>Quantitiy 1</Text>
+                <Text style={styles.subformmaintxt}>{t("Quantitiy")} 1</Text>
               </View>
               <View style={styles.subformmain}>
-                <Text style={styles.subformmaintxt}>200.00 Dirham</Text>
+                <Text style={styles.subformmaintxt}>200.00 {t("Dirham")}</Text>
               </View>
             </View>
             <View style={styles.subformmainlast}>
-              <Text style={styles.subformmainlasttxt1}>Total :</Text>
-              <Text style={styles.subformmainlasttxt2}>200.00 Dirham</Text>
+              <Text style={styles.subformmainlasttxt1}>{t("Total")}</Text>
+              <Text style={styles.subformmainlasttxt2}>
+                200.00 {t("Dirham")}
+              </Text>
             </View>
             <View style={styles.btn}>
               <Button
@@ -45,12 +49,14 @@ const SummaryComponent = ({ navigation, name }) => {
                 // onPress={() => navigation.navigate("Summary1")}
                 // onPress={handleSubmit}
               >
-                Order
+                {t("Order")}
               </Button>
             </View>
             <View style={styles.previouscontainer}>
               <Pressable onPress={() => navigation.goBack()}>
-                <Text style={styles.previouscontainertxt}>Previous Step</Text>
+                <Text style={styles.previouscontainertxt}>
+                  {t("PreviousStep")}
+                </Text>
               </Pressable>
             </View>
           </View>

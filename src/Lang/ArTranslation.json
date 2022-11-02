@@ -36,7 +36,16 @@
     "welcomeguest":"مرحبا بالزائر",
     "LogIn":"تسجيل الدخول",
     "Welcome":"مرحبا",
-    "Settings":"الاعدادات"
+    "Settings":"الاعدادات",
+    "dinar":"دينار",
+    "Category":"التصنيف :",
+    "Order":"طلب الاوردر",
+    "SelectGym":"اختار الجيم",
+    "Quantitiy":"الكميه",
+    "silverstartadress":"النجمه الفضيه . شارع حمدان . ابو ظبي",
+    "Dirham":"درهم",
+    "Total":"الاجمالي :",
+    "PreviousStep":"الخطوه السابقه"
 
 
 }

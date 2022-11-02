@@ -11,8 +11,10 @@ import React, { useState } from "react";
 import { width, height, smallSize, secSmallSize } from "../constants/Sized";
 import { BlackColor, GrayColor } from "../constants/Colors";
 import { Divider, Button } from "@rneui/themed";
+import { useTranslation } from "react-i18next";
 
 const ProductDetail = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const { type, name, price, image } = route.params;
   const [number, setNumber] = useState(0);
   const increment = () => {
@@ -30,7 +32,9 @@ const ProductDetail = ({ navigation, route }) => {
         <View style={styles.txtcontainer}>
           <Text style={styles.typetxt}>{type}</Text>
           <Text style={styles.nametxt}>{name}</Text>
-          <Text style={styles.nametxt}>{price} Dinar (In Stock)</Text>
+          <Text style={styles.nametxt}>
+            {price} {t("dinar")} (In Stock)
+          </Text>
           <Divider style={{ marginVertical: height / 60 }} />
           <View>
             <Text style={styles.categorytxt}>

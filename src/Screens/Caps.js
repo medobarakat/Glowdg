@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Caps = () => {
+  const { t } = useTranslation();
+
   return (
     <View>
-      <Text>Caps</Text>
+      <Text>{t("Caps")}</Text>
     </View>
   );
 };

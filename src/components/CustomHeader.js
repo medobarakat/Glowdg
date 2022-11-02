@@ -12,7 +12,7 @@ import EnPic from "../img/en.png";
 import ArPic from "../img/ar.png";
 
 const CustomHeader = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const IsGuest = useSelector((state) => state.auth.IsGuest);
   const data = useSelector((state) => state.auth.data);
@@ -97,24 +97,26 @@ const CustomHeader = () => {
               {IsGuest ? (
                 <>
                   <View style={styles.usercontainer}>
-                    <Text style={styles.usercontainertxt}>Welcome Guest</Text>
+                    <Text style={styles.usercontainertxt}>
+                      {t("welcomeguest")}
+                    </Text>
                   </View>
 
                   <MenuDivider />
-                  <MenuItem onPress={navigatelogin}>Log In</MenuItem>
+                  <MenuItem onPress={navigatelogin}>{t("LogIn")}</MenuItem>
                   <MenuDivider />
                 </>
               ) : (
                 <>
                   <View style={styles.usercontainer}>
                     <Text style={styles.usercontainertxt}>
-                      Welcome {data.data.display_name}
+                      {t("Welcome")} {data.data.display_name}
                     </Text>
                   </View>
 
                   <MenuDivider />
                   <MenuItem onPress={() => navigateto("Settings")}>
-                    Settings
+                    {t("Settings")}
                   </MenuItem>
                   <MenuItem onPress={logouthandler}>Log Out</MenuItem>
                   <MenuDivider />

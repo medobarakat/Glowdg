@@ -18,7 +18,10 @@ import {
   secSmallSize,
   TitleSize,
 } from "../constants/Sized";
+import { useTranslation } from "react-i18next";
+
 const Contactus = () => {
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const HandleSubmitData = async (name, email, subject, message) => {
@@ -49,13 +52,13 @@ const Contactus = () => {
       >
         <View style={styles.centerizedCol}>
           {/* <ActivityIndicator size="large" color="#0000ff" /> */}
-          <Text>Submitted</Text>
+          <Text>{t("Submitted")}</Text>
         </View>
       </Overlay>
       {/* end of modal */}
       <View style={styles.firstset}>
         <View style={styles.firstitle}>
-          <Text style={styles.firstitletxt}>Contact Us</Text>
+          <Text style={styles.firstitletxt}>{t("ContactUs")}</Text>
         </View>
       </View>
 
@@ -75,7 +78,7 @@ const Contactus = () => {
               values.message
             );
           } else {
-            setError("Complete The Form Please");
+            setError(t("formcomplete"));
           }
         }}
       >
@@ -83,28 +86,28 @@ const Contactus = () => {
           <View style={styles.inputcontainer}>
             <Input
               style={styles.input}
-              placeholder="Your Name"
+              placeholder={t("yourname")}
               value={values.name}
               onChangeText={handleChange("name")}
               onBlur={handleBlur("name")}
             />
             <Input
               style={styles.input}
-              placeholder="Your email"
+              placeholder={t("youremail")}
               value={values.email}
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
             />
             <Input
               style={styles.input}
-              placeholder="Subject"
+              placeholder={t("Subject")}
               value={values.subject}
               onChangeText={handleChange("subject")}
               onBlur={handleBlur("subject")}
             />
             <Input
               style={styles.input}
-              placeholder="Your message (optional)"
+              placeholder={t("optionalmessage")}
               value={values.message}
               onChangeText={handleChange("message")}
               onBlur={handleBlur("message")}
@@ -124,7 +127,7 @@ const Contactus = () => {
                 {error === undefined && (
                   <View style={styles.errmessage}>
                     <Text style={styles.errmessagetxt}>
-                      Check Your Connection and retry to log in
+                      {t("checkconnection")}
                     </Text>
                   </View>
                 )}
@@ -136,7 +139,7 @@ const Contactus = () => {
               containerStyle={styles.btn}
               onPress={handleSubmit}
             >
-              Submit
+              {t("Submit")}
             </Button>
           </View>
         )}
@@ -146,13 +149,13 @@ const Contactus = () => {
         <View>
           <View style={styles.highterlogo}>
             <Icon name="call" />
-            <Text style={styles.highterlogotxt}>Call to Us:</Text>
+            <Text style={styles.highterlogotxt}>{t("calluson")}</Text>
           </View>
           <Divider />
           <View style={styles.lastttxtcontainer}>
-            <Text style={styles.lastttxttitle}>Al Karam store branch 7</Text>
+            <Text style={styles.lastttxttitle}>{t("karamstore")}</Text>
             <View style={styles.lastttxtcontainer2}>
-              <Text style={styles.lastttxttitle2}>Customer Service:</Text>
+              <Text style={styles.lastttxttitle2}>{t("CustomerService")}</Text>
               <Text style={styles.lastttxttitle}>6-146-389-575</Text>
             </View>
           </View>
@@ -165,7 +168,7 @@ const Contactus = () => {
               Mohammed St – Abu Dhabi
             </Text>
             <View style={styles.lastttxtcontainer2}>
-              <Text style={styles.lastttxttitle2}>Customer Service:</Text>
+              <Text style={styles.lastttxttitle2}>{t("CustomerService")}</Text>
               <Text style={styles.lastttxttitle}>055 153 5516</Text>
             </View>
           </View>

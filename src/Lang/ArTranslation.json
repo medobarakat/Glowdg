@@ -24,7 +24,19 @@
     "CarServiceForm":"خدمه خدمات السيارات",
     "CarWashForm":"خدمه غسيل السيارات",
     "caps":"قبعات !",
-    "BusinessInquiries":"متطلبات العمل"
+    "BusinessInquiries":"متطلبات العمل",
+    "ContactUs":"تواصل معنا",
+    "yourname":"اسمك",
+    "youremail":"الايميل الخاص بك",
+    "Subject":"الموضوع",
+    "optionalmessage":"الرساله ( اختياري )",
+    "calluson":"اتصل بنا علي :",
+    "karamstore":"محل الكرم الفرع رقم 7",
+    "CustomerService":"خدمه العملاء :",
+    "welcomeguest":"مرحبا بالزائر",
+    "LogIn":"تسجيل الدخول",
+    "Welcome":"مرحبا",
+    "Settings":"الاعدادات"
 
 
 }

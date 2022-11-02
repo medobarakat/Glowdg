@@ -24,6 +24,19 @@
     "CarServiceForm":"Car Service Form",
     "CarWashForm":"Car Wash Form",
     "caps":"Caps !",
-    "BusinessInquiries":"Business Inquiries"
+    "BusinessInquiries":"Business Inquiries",
+    "ContactUs":"Contact Us",
+    "yourname":"Your Name",
+    "youremail":"Your email",
+    "Subject":"Subject",
+    "optionalmessage":"Your message (optional)",
+    "calluson":"Call to Us:",
+    "karamstore":"Al Karam store branch 7",
+    "CustomerService":"Customer Service:",
+    "welcomeguest":"Welcome Guest",
+    "LogIn":"Log In",
+    "Welcome":"Welcome",
+    "Settings":"Settings"
+    
     
 }

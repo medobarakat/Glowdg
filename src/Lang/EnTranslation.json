@@ -45,7 +45,25 @@
     "silverstartadress":"Silver star - Hamdan Street , Abu Dhabi",
     "Dirham":"Dirham",
     "Total":"Total :",
-    "PreviousStep":"Previous Step"
+    "PreviousStep":"Previous Step",
+    "TypeOfPhone":"Type Of Phone",
+    "Whatneedstoberepaired":"What needs to be repaired",
+    "ContactNumber":"Contact Number",
+    "Next":"Next",
+    "GoBack":"Go Back",
+    "Search":"Search",
+    "NumberofMonths":"Number of Months",
+    "TYPEOFCAR":"TYPE OF CAR",
+    "success":"success",
+    "LoginPleaseToConfirmOrder":"Login Please To Confirm Order",
+    "Summary":"Summary",
+    "Finalcost":"Final cost",
+    "Thefinalestimatedpriceis":"The final estimated price is :",
+    "EnteryourNumber":"Enter your Number",
+    "Message":"Message",
+    "Enteryouremail":"Enter your email",
+    "NextStep":"Next Step"
+
     
     
 }

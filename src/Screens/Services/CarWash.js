@@ -13,8 +13,10 @@ import { Divider, Input, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Dropdown } from "react-native-element-dropdown";
+import { useTranslation } from "react-i18next";
 
 const CarWash = ({ navigation }) => {
+  const { t } = useTranslation();
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const data = [
@@ -35,16 +37,6 @@ const CarWash = ({ navigation }) => {
     { label: "11", value: "11" },
     { label: "12", value: "12" },
   ];
-  const renderLabel = () => {
-    if (value || isFocus) {
-      return (
-        <Text style={[styles.label, isFocus && { color: "blue" }]}>
-          Dropdown label
-        </Text>
-      );
-    }
-    return null;
-  };
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
@@ -60,7 +52,7 @@ const CarWash = ({ navigation }) => {
             if (values.type && values.repair && values.contact) {
               await HandleLogIn(values.type, values.repair, values.contact);
             } else {
-              setError("Complete The Form Please");
+              setError(t("formcomplete"));
             }
           }}
         >
@@ -80,7 +72,7 @@ const CarWash = ({ navigation }) => {
                     labelField="label"
                     valueField="value"
                     placeholder={!isFocus ? "Select item" : "..."}
-                    searchPlaceholder="Search..."
+                    searchPlaceholder={t("Search")}
                     value={value}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}
@@ -97,7 +89,7 @@ const CarWash = ({ navigation }) => {
                     onPress={() => navigation.navigate("Summary4")}
                     // onPress={handleSubmit}
                   >
-                    Next
+                    {t("Next")}
                   </Button>
                 </View>
               </View>

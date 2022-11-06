@@ -15,25 +15,26 @@ import {
   secSmallSize,
   TitleSize,
 } from "../../../constants/Sized";
-import LottieView from 'lottie-react-native';
+import LottieView from "lottie-react-native";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Summary = ({ navigation }) => {
+  const { t } = useTranslation();
   const animation = useRef(null);
   const [showModal, setShowModal] = useState(false);
   const IsGuest = useSelector((state) => state.auth.IsGuest);
   const orderhandler = () => {
     if (IsGuest) {
-      setShowModal(true)
+      setShowModal(true);
     } else {
-      console.warn("success")
+      console.warn(t("success"));
     }
-  }
+  };
   return (
     <View style={styles.container}>
       {IsGuest && (
         <>
-
           {/* start of modal */}
           <Overlay
             isVisible={showModal}
@@ -46,35 +47,33 @@ const Summary = ({ navigation }) => {
               style={{
                 width: 100,
                 height: 200,
-                backgroundColor: '#eee',
+                backgroundColor: "#eee",
               }}
-              source={require('../../../img/74164-warning.json')}
+              source={require("../../../img/74164-warning.json")}
             />
             <Pressable style={styles.centerizedCol}>
-              <Text>Login Please To Confirm Order</Text>
+              <Text>{t("LoginPleaseToConfirmOrder")}</Text>
             </Pressable>
           </Overlay>
           {/* end of modal */}
         </>
       )}
       <View>
-        <Text style={styles.subformmaintxt1}>Summary</Text>
+        <Text style={styles.subformmaintxt1}>{t("Summary")}</Text>
         <View style={styles.subformmaincontainer}>
           <View style={styles.subformmain}>
-            <Text style={styles.subformmaintxt}>
-              Silver star - Hamdan Street , Abu Dhabi
-            </Text>
+            <Text style={styles.subformmaintxt}>>{t("silverstartadress")}</Text>
           </View>
           <View style={styles.subformmain}>
-            <Text style={styles.subformmaintxt}>Quantitiy 1</Text>
+            <Text style={styles.subformmaintxt}>{t("Quantitiy")} 1</Text>
           </View>
           <View style={styles.subformmain}>
-            <Text style={styles.subformmaintxt}>200.00 Dirham</Text>
+            <Text style={styles.subformmaintxt}>200.00 {t("Dirham")}</Text>
           </View>
         </View>
         <View style={styles.subformmainlast}>
-          <Text style={styles.subformmainlasttxt1}>Total :</Text>
-          <Text style={styles.subformmainlasttxt2}>200.00 Dirham</Text>
+          <Text style={styles.subformmainlasttxt1}>{t("Total")} :</Text>
+          <Text style={styles.subformmainlasttxt2}>200.00 {t("Dirham")}</Text>
         </View>
         <View style={styles.btn}>
           <Button
@@ -83,12 +82,12 @@ const Summary = ({ navigation }) => {
             // onPress={handleSubmit}
             onPress={orderhandler}
           >
-            Order
+            {t("Order")}
           </Button>
         </View>
         <View style={styles.previouscontainer}>
           <Pressable onPress={() => navigation.goBack()}>
-            <Text style={styles.previouscontainertxt}>Previous Step</Text>
+            <Text style={styles.previouscontainertxt}>{t("PreviousStep")}</Text>
           </Pressable>
         </View>
       </View>

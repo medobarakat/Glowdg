@@ -12,12 +12,14 @@ import {
 import { Divider, Input, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useTranslation } from "react-i18next";
 
 const CarServices = ({ navigation }) => {
+  const { t } = useTranslation();
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
       <View style={styles.container}>
-        <Text style={styles.maintxt}>Car Service form</Text>
+        <Text style={styles.maintxt}>{t("CarServiceForm")}</Text>
         <Formik
           initialValues={{
             type: "",
@@ -28,7 +30,7 @@ const CarServices = ({ navigation }) => {
             if (values.type && values.repair && values.contact) {
               await HandleLogIn(values.type, values.repair, values.contact);
             } else {
-              setError("Complete The Form Please");
+              setError(t("formcomplete"));
             }
           }}
         >
@@ -36,7 +38,7 @@ const CarServices = ({ navigation }) => {
             <View>
               <View style={styles.subformmaincontainer}>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Type of Car</Text>
+                  <Text style={styles.subformtitle}>{t("TYPEOFCAR")}</Text>
                   <Input
                     style={styles.subforminput}
                     value={values.type}
@@ -46,7 +48,7 @@ const CarServices = ({ navigation }) => {
                 </View>
                 <View style={styles.subformcontainer}>
                   <Text style={styles.subformtitle}>
-                    What needs to be repaired
+                    {t("Whatneedstoberepaired")}
                   </Text>
                   <Input
                     style={styles.subforminput}
@@ -56,7 +58,7 @@ const CarServices = ({ navigation }) => {
                   />
                 </View>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Name</Text>
+                  <Text style={styles.subformtitle}>{t("yourname")}</Text>
                   <Input
                     style={styles.subforminput}
                     value={values.contact}
@@ -65,7 +67,7 @@ const CarServices = ({ navigation }) => {
                   />
                 </View>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Contact Number</Text>
+                  <Text style={styles.subformtitle}>{t("ContactNumber")}</Text>
                   <Input
                     style={styles.subforminput}
                     value={values.contact}
@@ -79,12 +81,14 @@ const CarServices = ({ navigation }) => {
                     onPress={() => navigation.navigate("Summary3")}
                     // onPress={handleSubmit}
                   >
-                    Next
+                    {t("Next")}
                   </Button>
                 </View>
                 <View style={styles.previouscontainer}>
                   <Pressable onPress={() => navigation.goBack()}>
-                    <Text style={styles.previouscontainertxt}>Go Back</Text>
+                    <Text style={styles.previouscontainertxt}>
+                      {t("GoBack")}
+                    </Text>
                   </Pressable>
                 </View>
               </View>

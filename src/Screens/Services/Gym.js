@@ -13,8 +13,10 @@ import { Divider, Input, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Dropdown } from "react-native-element-dropdown";
+import { useTranslation } from "react-i18next";
 
 const Gym = ({ navigation }) => {
+  const { t } = useTranslation();
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const data = [
@@ -35,21 +37,11 @@ const Gym = ({ navigation }) => {
     { label: "11", value: "11" },
     { label: "12", value: "12" },
   ];
-  const renderLabel = () => {
-    if (value || isFocus) {
-      return (
-        <Text style={[styles.label, isFocus && { color: "blue" }]}>
-          Dropdown label
-        </Text>
-      );
-    }
-    return null;
-  };
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
       <View style={styles.container}>
-        <Text style={styles.maintxt}>Gym membership form</Text>
+        <Text style={styles.maintxt}>{t("GymMembershipForm")}</Text>
         <Formik
           initialValues={{
             type: "",
@@ -60,7 +52,7 @@ const Gym = ({ navigation }) => {
             if (values.type && values.repair && values.contact) {
               await HandleLogIn(values.type, values.repair, values.contact);
             } else {
-              setError("Complete The Form Please");
+              setError(t("formcomplete"));
             }
           }}
         >
@@ -68,7 +60,7 @@ const Gym = ({ navigation }) => {
             <View>
               <View style={styles.subformmaincontainer}>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Select Gym</Text>
+                  <Text style={styles.subformtitle}>{t("SelectGym")}</Text>
                   <Dropdown
                     style={[
                       styles.dropdown,
@@ -81,7 +73,7 @@ const Gym = ({ navigation }) => {
                     labelField="label"
                     valueField="value"
                     placeholder={!isFocus ? "Select item" : "..."}
-                    searchPlaceholder="Search..."
+                    searchPlaceholder={t("Search")}
                     value={value}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}
@@ -92,7 +84,7 @@ const Gym = ({ navigation }) => {
                   />
                 </View>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Number of Months</Text>
+                  <Text style={styles.subformtitle}>{t("NumberofMonths")}</Text>
                   <Dropdown
                     style={[
                       styles.dropdown,
@@ -105,7 +97,7 @@ const Gym = ({ navigation }) => {
                     labelField="label"
                     valueField="value"
                     placeholder={!isFocus ? "Select item" : "..."}
-                    searchPlaceholder="Search..."
+                    searchPlaceholder={t("Search")}
                     value={value}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}

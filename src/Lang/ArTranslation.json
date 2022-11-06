@@ -45,7 +45,24 @@
     "silverstartadress":"النجمه الفضيه . شارع حمدان . ابو ظبي",
     "Dirham":"درهم",
     "Total":"الاجمالي :",
-    "PreviousStep":"الخطوه السابقه"
+    "PreviousStep":"الخطوه السابقه",
+    "TypeOfPhone":"نوع الهاتف",
+    "Whatneedstoberepaired":"ما الذي يحتاج لصيانته",
+    "ContactNumber":"رقم التواصل",
+    "Next":"التالي",
+    "GoBack":"الرجوع للخلف",
+    "Search":"البحث",
+    "NumberofMonths":"عدد الشهور",
+    "TYPEOFCAR":"نوع السياره",
+    "success":"نجاح",
+    "LoginPleaseToConfirmOrder":"من فضلك قم تسجيل الدخول لاستكمال الطلب",
+    "Summary":"الملخص",
+    "Finalcost":"التكلفه النهائيه",
+    "Thefinalestimatedpriceis":"السعر المتوقع النهائي هو :",
+    "EnteryourNumber":"ادخل الرقم",
+    "Message":"الرساله",
+    "Enteryouremail":"ادخل الايميل",
+    "NextStep":"الخطوه التاليه"
 
 
 }

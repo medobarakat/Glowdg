@@ -16,8 +16,10 @@ import {
   TitleSize,
 } from "../../../constants/Sized";
 import { Divider, Input, Button } from "@rneui/themed";
+import { useTranslation } from "react-i18next";
 
 const PhoneFinalCost = ({ navigation }) => {
+  const { t } = useTranslation();
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
       <ScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
@@ -32,7 +34,7 @@ const PhoneFinalCost = ({ navigation }) => {
               if (values.type && values.repair && values.contact) {
                 await HandleLogIn(values.type, values.repair, values.contact);
               } else {
-                setError("Complete The Form Please");
+                setError(t("formcomplete"));
               }
             }}
           >
@@ -40,16 +42,18 @@ const PhoneFinalCost = ({ navigation }) => {
               <View>
                 <View style={styles.subformmaincontainer}>
                   <Text style={styles.subformmaincontainertitle}>
-                    Final cost
+                    {t("Finalcost")}
                   </Text>
                   <View style={styles.subformcontainer}>
                     <Text style={styles.subformtitle}>
-                      The final estimated price is :
+                      {t("Thefinalestimatedpriceis")}
                     </Text>
                     <Text style={styles.subformmaincontainertitle}>
-                      Dirham 0
+                      {t("Dirham")} 0
                     </Text>
-                    <Text style={styles.subformtitle}>Enter your Number</Text>
+                    <Text style={styles.subformtitle}>
+                      {t("EnteryourNumber")}
+                    </Text>
                     <Input
                       style={styles.subforminput}
                       value={values.type}
@@ -68,7 +72,9 @@ const PhoneFinalCost = ({ navigation }) => {
                   </View>
 
                   <View style={styles.subformcontainer}>
-                    <Text style={styles.subformtitle}>Enter your email</Text>
+                    <Text style={styles.subformtitle}>
+                      {t("Enteryouremail")}
+                    </Text>
                     <Input
                       style={styles.subforminput}
                       value={values.contact}
@@ -83,13 +89,13 @@ const PhoneFinalCost = ({ navigation }) => {
                       onPress={() => navigation.navigate("Summary1")}
                       // onPress={handleSubmit}
                     >
-                      Next Step
+                      {t("NextStep")}
                     </Button>
                   </View>
                   <View style={styles.previouscontainer}>
                     <Pressable onPress={() => navigation.goBack()}>
                       <Text style={styles.previouscontainertxt}>
-                        Previous Step
+                        {t("PreviousStep")}
                       </Text>
                     </Pressable>
                   </View>

@@ -12,12 +12,14 @@ import {
 import { Divider, Input, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useTranslation } from "react-i18next";
 
 const Phone = ({ navigation }) => {
+  const { t } = useTranslation();
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
       <View style={styles.container}>
-        <Text style={styles.maintxt}>Phone maintenance form</Text>
+        <Text style={styles.maintxt}>{t("PhoneMaintenanceForm")}</Text>
         <Formik
           initialValues={{
             type: "",
@@ -36,10 +38,10 @@ const Phone = ({ navigation }) => {
             <View>
               <View style={styles.subformmaincontainer}>
                 <Text style={styles.subformmaincontainertitle}>
-                  Phone maintenance form
+                  {t("PhoneMaintenanceForm")}
                 </Text>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Type Of Phone</Text>
+                  <Text style={styles.subformtitle}>{t("TypeOfPhone")}</Text>
                   <Input
                     style={styles.subforminput}
                     value={values.type}
@@ -49,7 +51,7 @@ const Phone = ({ navigation }) => {
                 </View>
                 <View style={styles.subformcontainer}>
                   <Text style={styles.subformtitle}>
-                    What needs to be repaired
+                    {t("Whatneedstoberepaired")}
                   </Text>
                   <Input
                     style={styles.subforminput}
@@ -59,7 +61,7 @@ const Phone = ({ navigation }) => {
                   />
                 </View>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>Contact Number</Text>
+                  <Text style={styles.subformtitle}>{t("ContactNumber")}</Text>
                   <Input
                     style={styles.subforminput}
                     value={values.contact}
@@ -73,12 +75,14 @@ const Phone = ({ navigation }) => {
                     onPress={() => navigation.navigate("PhoneFinalCost")}
                     // onPress={handleSubmit}
                   >
-                    Next
+                    {t("Next")}
                   </Button>
                 </View>
                 <View style={styles.previouscontainer}>
                   <Pressable onPress={() => navigation.goBack()}>
-                    <Text style={styles.previouscontainertxt}>Go Back</Text>
+                    <Text style={styles.previouscontainertxt}>
+                      {t("GoBack")}
+                    </Text>
                   </Pressable>
                 </View>
               </View>

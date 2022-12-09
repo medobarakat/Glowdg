@@ -62,7 +62,13 @@
     "EnteryourNumber":"Enter your Number",
     "Message":"Message",
     "Enteryouremail":"Enter your email",
-    "NextStep":"Next Step"
+    "NextStep":"Next Step",
+    "companyName":"Company/person name",
+    "details2":"Business Inquiry Details",
+    "contact2":"Contact email",
+    "number2":"Contact Number"
+
+
 
     
     

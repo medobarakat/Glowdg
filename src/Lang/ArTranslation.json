@@ -62,7 +62,11 @@
     "EnteryourNumber":"ادخل الرقم",
     "Message":"الرساله",
     "Enteryouremail":"ادخل الايميل",
-    "NextStep":"الخطوه التاليه"
+    "NextStep":"الخطوه التاليه",
+    "companyName":"اسم الشركه / الشخص",
+    "details2":"تفاصيل متطلبات العمل",
+    "contact2":"ايميل الشخص",
+    "number2":"رقم هاتف الشخص"
 
 
 }

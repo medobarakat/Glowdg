@@ -26,7 +26,6 @@ import { Overlay } from "react-native-elements";
 import LottieView from "lottie-react-native";
 import { useTranslation } from "react-i18next";
 import Svg, { G, Path } from "react-native-svg";
-
 const Home = ({ navigation }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -46,18 +45,18 @@ const Home = ({ navigation }) => {
   const data = [
     {
       id: 0,
-      uri: "https://images.unsplash.com/photo-1607326957431-29d25d2b386f",
-      title: "Dahlia",
+      uri: "https://i.ibb.co/zHyS8pv/b1.jpg",
+      title: "first",
     }, // https://unsplash.com/photos/Jup6QMQdLnM
     {
       id: 1,
-      uri: "https://images.unsplash.com/photo-1512238701577-f182d9ef8af7",
-      title: "Sunflower",
+      uri: "https://i.ibb.co/R0YX3QW/b2.jpg",
+      title: "sec",
     }, // https://unsplash.com/photos/oO62CP-g1EA
     {
       id: 2,
-      uri: "https://images.unsplash.com/photo-1627522460108-215683bdc9f6",
-      title: "Zinnia",
+      uri: "https://i.ibb.co/qr3HP03/b3.jpg",
+      title: "Third",
     }, // https://unsplash.com/photos/gKMmJEvcyA8
   ];
 
@@ -119,8 +118,6 @@ const Home = ({ navigation }) => {
           </Svg>
         </TouchableOpacity>
         <ScrollView>
-          {/* //! just for testing */}
-          {/* <Text>{t("hi")}</Text> */}
           <ImageCarousel data={data} />
           <View style={styles.titlecontainer}>
             <Text style={styles.titlecontainertxt}>{t("introtxt")}</Text>

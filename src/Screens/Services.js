@@ -5,6 +5,7 @@ import {
   Pressable,
   ImageBackground,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { Header, Icon, Button } from "@rneui/themed";
@@ -19,6 +20,7 @@ import {
 import { PrimaryColor, BlackColor, WhiteColor } from "../constants/Colors";
 import { Animated } from "react-native";
 import { useTranslation } from "react-i18next";
+import Svg, { G, Path } from "react-native-svg";
 
 const Services = ({ navigation }) => {
   const { t } = useTranslation();

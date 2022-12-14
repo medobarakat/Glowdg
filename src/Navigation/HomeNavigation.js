@@ -75,13 +75,13 @@ const HomeNavigation = ({ Navigation }) => {
           title: "GLOWDG membership",
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Contactus"
         component={Contactus}
         options={{
           title: "Contact Us",
         }}
-      />
+      /> */}
       <Drawer.Screen name="Faqs" component={Faqs} />
       <Drawer.Screen
         name="Settings"
@@ -90,7 +90,13 @@ const HomeNavigation = ({ Navigation }) => {
           drawerItemStyle: { height: 0 },
         }}
       />
-      {IsGuest && <Drawer.Screen name="Login" component={LoginNavigation} options={{ headerShown: false }} />}
+      {IsGuest && (
+        <Drawer.Screen
+          name="Login"
+          component={LoginNavigation}
+          options={{ headerShown: false }}
+        />
+      )}
     </Drawer.Navigator>
   );
 };

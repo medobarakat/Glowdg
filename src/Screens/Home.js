@@ -46,17 +46,17 @@ const Home = ({ navigation }) => {
     {
       id: 0,
       uri: "https://i.ibb.co/zHyS8pv/b1.jpg",
-      title: "first",
+      title: "GLOWDG",
     }, // https://unsplash.com/photos/Jup6QMQdLnM
     {
       id: 1,
       uri: "https://i.ibb.co/R0YX3QW/b2.jpg",
-      title: "sec",
+      title: "GLOWDG",
     }, // https://unsplash.com/photos/oO62CP-g1EA
     {
       id: 2,
       uri: "https://i.ibb.co/qr3HP03/b3.jpg",
-      title: "Third",
+      title: "GLOWDG",
     }, // https://unsplash.com/photos/gKMmJEvcyA8
   ];
 

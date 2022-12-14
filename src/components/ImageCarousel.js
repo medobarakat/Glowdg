@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS + SPACING * 2,
   },
   itemText: {
-    fontSize: 24,
+    fontSize: 32,
     position: "absolute",
-    bottom: SPACING * 2,
-    right: SPACING * 2,
-    color: "white",
+    bottom: SPACING,
+    left: SPACING,
+    color: "yellow",
     fontWeight: "600",
   },
   itemImage: {

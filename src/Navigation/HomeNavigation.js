@@ -43,7 +43,7 @@ const HomeNavigation = ({ Navigation }) => {
         name="whoarewe"
         component={Whoarewe}
         options={{
-          title: "Who We Are",
+          title: "About Us",
         }}
       />
       <Drawer.Screen name="Services" component={ServicesNavigation} />

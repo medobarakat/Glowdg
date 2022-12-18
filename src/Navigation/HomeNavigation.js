@@ -82,7 +82,7 @@ const HomeNavigation = ({ Navigation }) => {
           title: "Contact Us",
         }}
       /> */}
-      <Drawer.Screen name="Faqs" component={Faqs} />
+      {/* <Drawer.Screen name="Faqs" component={Faqs} /> */}
       <Drawer.Screen
         name="Settings"
         component={Settings}

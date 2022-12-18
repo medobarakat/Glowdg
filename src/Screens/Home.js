@@ -186,50 +186,105 @@ const Home = ({ navigation }) => {
               </ImageBackground>
             </Pressable>
             <Divider color={"black"} />
-            {/* <View style={styles.minicardcontainermain}>
-            <View style={styles.minicardcontainer}>
-              <View style={styles.minicardleft}>
-                <Icon1 style={styles.minicardlefticon} />
-              </View>
-              <View style={styles.minicardright}>
-                <Text style={styles.minicardright1}>FREE SHIPPING</Text>
-                <Text style={styles.minicardright2}>
-                  From all orders over 250 AE{" "}
-                </Text>
-              </View>
+            <View style={styles.minicardcontainermain}>
+              <TouchableOpacity style={styles.minicardcontainer}>
+                <View style={styles.minicardleft}>
+                  <Svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={50}
+                    height={20}
+                    fill="none"
+                  >
+                    <Path
+                      d="M16 14V1H1v13h15Zm0 0h7V9l-3-3h-4v8Zm-8 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm13 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+                      stroke="#FF6F61"
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </Svg>
+                  {/* <Icon1 style={styles.minicardlefticon} /> */}
+                </View>
+                <View style={styles.minicardright}>
+                  <Text style={styles.minicardright1}>FREE SHIPPING</Text>
+                  <Text style={styles.minicardright2}>
+                    From all orders over 250 AE{" "}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.minicardcontainer}>
+                <View style={styles.minicardleft}>
+                  <Svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={50}
+                    height={20}
+                    fill="none"
+                  >
+                    <Path
+                      d="M13.167.833 16.5 4.167m0 0L13.167 7.5M16.5 4.167H4.833A3.333 3.333 0 0 0 1.5 7.5v1.667m3.333 10L1.5 15.833m0 0L4.833 12.5M1.5 15.833h11.667A3.333 3.333 0 0 0 16.5 12.5v-1.667"
+                      stroke="#FF6F61"
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </Svg>
+                </View>
+                <View style={styles.minicardright}>
+                  <Text style={styles.minicardright1}>FREE RETURNS</Text>
+                  <Text style={styles.minicardright2}>
+                    Return money within 30 days{" "}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.minicardcontainer}>
+                <View style={styles.minicardleft}>
+                  <Svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={50}
+                    height={20}
+                    fill="none"
+                  >
+                    <Path
+                      d="M4.6 9.1V5.5a4.5 4.5 0 0 1 9 0v3.6m-10.8 0h12.6a1.8 1.8 0 0 1 1.8 1.8v6.3a1.8 1.8 0 0 1-1.8 1.8H2.8A1.8 1.8 0 0 1 1 17.2v-6.3a1.8 1.8 0 0 1 1.8-1.8Z"
+                      stroke="#FF6F61"
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </Svg>
+                </View>
+                <View style={styles.minicardright}>
+                  <Text style={styles.minicardright1}>SECURE SHOPPING</Text>
+                  <Text style={styles.minicardright2}>
+                    You're in safe hands
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.minicardcontainer}>
+                <View style={styles.minicardleft}>
+                  <Svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={50}
+                    height={20}
+                    fill="none"
+                  >
+                    <Path
+                      d="m18.454 11.716-6.732 6.733a1.877 1.877 0 0 1-2.657 0L1 10.391V1h9.389l8.065 8.067a1.879 1.879 0 0 1 0 2.649v0Z"
+                      stroke="#FF6F61"
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </Svg>
+                </View>
+                <View style={styles.minicardright}>
+                  <Text style={styles.minicardright1}>OVER 10,000 STYLES</Text>
+                  <Text style={styles.minicardright2}>
+                    ( Spanning All Over the UAE )
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </View>
-            <View style={styles.minicardcontainer}>
-              <View style={styles.minicardleft}>
-                <Icon2 style={styles.minicardlefticon} />
-              </View>
-              <View style={styles.minicardright}>
-                <Text style={styles.minicardright1}>FREE RETURNS</Text>
-                <Text style={styles.minicardright2}>
-                  Return money within 30 days{" "}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.minicardcontainer}>
-              <View style={styles.minicardleft}>
-                <Icon3 style={styles.minicardlefticon} />
-              </View>
-              <View style={styles.minicardright}>
-                <Text style={styles.minicardright1}>SECURE SHOPPING</Text>
-                <Text style={styles.minicardright2}>You're in safe hands</Text>
-              </View>
-            </View>
-            <View style={styles.minicardcontainer}>
-              <View style={styles.minicardleft}>
-                <Icon4 style={styles.minicardlefticon} />
-              </View>
-              <View style={styles.minicardright}>
-                <Text style={styles.minicardright1}>OVER 10,000 STYLES</Text>
-                <Text style={styles.minicardright2}>
-                  ( Spanning All Over the UAE ){" "}
-                </Text>
-              </View>
-            </View>
-          </View> */}
           </View>
         </ScrollView>
       </>

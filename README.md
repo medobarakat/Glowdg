@@ -1,4 +1,4 @@
-# GlowDg E-Commence App
+# GlowDg E-Commence App..
 
 An React Native Expo Manged App...
 

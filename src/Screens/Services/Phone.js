@@ -13,9 +13,36 @@ import { Divider, Input, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { Api_url } from "../../uitlties/ApiConstants";
 
 const Phone = ({ navigation }) => {
   const { t } = useTranslation();
+  const HandleSubmitFromFormik = (type, repair, contact, email) => {
+    const url =
+      Api_url +
+      `?phoneform=yes&top=${type}&whrepaired=${repair}&cnmb=${contact}&custemail=${email}`;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    };
+    axios
+      .get(url, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      // .then((res) => {
+      //   navigation.navigate("home1")
+
+      // })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
       <View style={styles.container}>
@@ -25,10 +52,21 @@ const Phone = ({ navigation }) => {
             type: "",
             repair: "",
             contact: "",
+            email: "",
           }}
-          onSubmit={async (values) => {
-            if (values.type && values.repair && values.contact) {
-              await HandleLogIn(values.type, values.repair, values.contact);
+          onSubmit={(values) => {
+            if (
+              values.type &&
+              values.repair &&
+              values.contact &&
+              values.email
+            ) {
+              HandleSubmitFromFormik(
+                values.type,
+                values.repair,
+                values.contact,
+                values.email
+              );
             } else {
               setError("Complete The Form Please");
             }
@@ -69,11 +107,20 @@ const Phone = ({ navigation }) => {
                     onBlur={handleBlur("contact")}
                   />
                 </View>
+                <View style={styles.subformcontainer}>
+                  <Text style={styles.subformtitle}>{t("email")}</Text>
+                  <Input
+                    style={styles.subforminput}
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                  />
+                </View>
                 <View style={styles.btn}>
                   <Button
                     color="secondary"
-                    onPress={() => navigation.navigate("PhoneFinalCost")}
-                    // onPress={handleSubmit}
+                    //onPress={() => navigation.navigate("PhoneFinalCost")}
+                    onPress={handleSubmit}
                   >
                     {t("Next")}
                   </Button>

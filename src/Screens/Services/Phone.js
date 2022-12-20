@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { PrimaryColor, BlackColor, WhiteColor } from "../../constants/Colors";
 import {
   height,
@@ -15,10 +15,16 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { Api_url } from "../../uitlties/ApiConstants";
-
+import { Overlay } from "react-native-elements";
+import LottieView from "lottie-react-native";
 const Phone = ({ navigation }) => {
   const { t } = useTranslation();
+  const [showModal, setShowModal] = useState("");
+  const [error, setError] = useState("");
+  const animation = useRef(null);
+
   const HandleSubmitFromFormik = (type, repair, contact, email) => {
+    setShowModal(false);
     const url =
       Api_url +
       `?phoneform=yes&top=${type}&whrepaired=${repair}&cnmb=${contact}&custemail=${email}`;
@@ -34,10 +40,9 @@ const Phone = ({ navigation }) => {
       .then((res) => {
         console.log(res.data);
       })
-      // .then((res) => {
-      //   navigation.navigate("home1")
-
-      // })
+      .then((res) => {
+        setShowModal(true);
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -45,6 +50,27 @@ const Phone = ({ navigation }) => {
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
+      {/* start of modal */}
+      <Overlay
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+      >
+        <LottieView
+          autoPlay
+          loop={false}
+          ref={animation}
+          style={{
+            width: 100,
+            height: 200,
+            backgroundColor: "#eee",
+          }}
+          source={require("../../img/33886-check-okey-done.json")}
+        />
+        <Pressable style={styles.centerizedCol}>
+          <Text>{t("datasucess")}</Text>
+        </Pressable>
+      </Overlay>
+      {/* end of modal */}
       <View style={styles.container}>
         <Text style={styles.maintxt}>{t("PhoneMaintenanceForm")}</Text>
         <Formik
@@ -116,10 +142,31 @@ const Phone = ({ navigation }) => {
                     onBlur={handleBlur("email")}
                   />
                 </View>
+                {/* for error handling */}
+
+                <View>
+                  <View>
+                    {error && (
+                      <View style={styles.errmessage}>
+                        <Text style={styles.errmessagetxt}>{error}</Text>
+                      </View>
+                    )}
+                  </View>
+                  <View>
+                    {error === undefined && (
+                      <View style={styles.errmessage}>
+                        <Text style={styles.errmessagetxt}>
+                          {t("checkconnection")}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+                </View>
+                {/* end of error handling */}
                 <View style={styles.btn}>
                   <Button
                     color="secondary"
-                    //onPress={() => navigation.navigate("PhoneFinalCost")}
+                    // onPress={() => navigation.navigate("PhoneFinalCost")}
                     onPress={handleSubmit}
                   >
                     {t("Next")}
@@ -193,5 +240,22 @@ const styles = StyleSheet.create({
   previouscontainertxt: {
     fontFamily: "Roboto_700Bold",
     textAlign: "center",
+  },
+  errmessage: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  errmessagetxt: {
+    fontSize: 14,
+    fontFamily: "Roboto_500Medium",
+    color: "red",
+  },
+  centerizedCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 15,
   },
 });

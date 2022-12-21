@@ -28,7 +28,6 @@ const Phone = ({ navigation }) => {
     const url =
       Api_url +
       `?phoneform=yes&top=${type}&whrepaired=${repair}&cnmb=${contact}&custemail=${email}`;
-
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -134,7 +133,7 @@ const Phone = ({ navigation }) => {
                   />
                 </View>
                 <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>{t("email")}</Text>
+                  <Text style={styles.subformtitle}>{t("youremail")}</Text>
                   <Input
                     style={styles.subforminput}
                     value={values.email}

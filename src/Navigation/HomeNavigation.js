@@ -13,6 +13,7 @@ import CapsProductsNavigation from "./CapsProductsNavigation";
 import Bussiness from "../Screens/Bussiness";
 import Membership from "../Screens/Membership";
 import Contactus from "../Screens/Contactus";
+import FeedBack from "../Screens/FeedBack";
 import Faqs from "../Screens/Faqs";
 import CustomDrawer from "../components/CustomDrawer";
 // importing login screen
@@ -75,13 +76,20 @@ const HomeNavigation = ({ Navigation }) => {
           title: "GLOWDG membership",
         }}
       />
-      {/* <Drawer.Screen
+      <Drawer.Screen
         name="Contactus"
         component={Contactus}
         options={{
           title: "Contact Us",
         }}
-      /> */}
+      />
+      <Drawer.Screen
+        name="Feed Back"
+        component={FeedBack}
+        options={{
+          title: "FeedBack",
+        }}
+      />
       {/* <Drawer.Screen name="Faqs" component={Faqs} /> */}
       <Drawer.Screen
         name="Settings"

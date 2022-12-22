@@ -23,16 +23,16 @@ import LottieView from "lottie-react-native";
 import axios from "axios";
 import { Api_url } from "../uitlties/ApiConstants";
 
-const Contactus = () => {
+const Feedback = () => {
   const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const animation = useRef(null);
-  const HandleSubmitData = async (name, number, email, subject, message) => {
+  const HandleSubmitData = async (exp, comment, email, message, number) => {
     setShowModal(false);
     const url =
       Api_url +
-      `?contactus=yes&cname=${name}&csubject=${subject}&cmessage=${message}&cnmb=${number}&custemail=${email}`;
+      `?feedback=yes&howisyourexperience=${exp}&anycomments=${comment}&cmessage=${message}&cnmb=${number}&custemail=${email}`;
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -76,32 +76,32 @@ const Contactus = () => {
       {/* end of modal */}
       <View style={styles.firstset}>
         <View style={styles.firstitle}>
-          <Text style={styles.firstitletxt}>{t("ContactUs")}</Text>
+          <Text style={styles.firstitletxt}>{t("howisyourex")}</Text>
         </View>
       </View>
 
       <Formik
         initialValues={{
-          name: "",
-          number: "",
+          exp: "",
+          comment: "",
           email: "",
-          subject: "",
           message: "",
+          number: "",
         }}
         onSubmit={async (values) => {
           if (
-            values.name &&
             values.number &&
+            values.exp &&
+            values.comment &&
             values.email &&
-            values.subject &&
             values.message
           ) {
             await HandleSubmitData(
-              values.name,
-              values.number,
+              values.exp,
+              values.comment,
               values.email,
-              values.subject,
-              values.message
+              values.message,
+              values.number
             );
           } else {
             setError(t("formcomplete"));
@@ -112,17 +112,17 @@ const Contactus = () => {
           <View style={styles.inputcontainer}>
             <Input
               style={styles.input}
-              placeholder={t("Firstname")}
-              value={values.name}
-              onChangeText={handleChange("name")}
-              onBlur={handleBlur("name")}
+              placeholder={t("howisyourex")}
+              value={values.exp}
+              onChangeText={handleChange("exp")}
+              onBlur={handleBlur("exp")}
             />
             <Input
               style={styles.input}
-              placeholder={t("EnteryourNumber")}
-              value={values.number}
-              onChangeText={handleChange("number")}
-              onBlur={handleBlur("number")}
+              placeholder={t("anycomments")}
+              value={values.comment}
+              onChangeText={handleChange("comment")}
+              onBlur={handleBlur("comment")}
             />
             <Input
               style={styles.input}
@@ -133,10 +133,10 @@ const Contactus = () => {
             />
             <Input
               style={styles.input}
-              placeholder={t("Subject")}
-              value={values.subject}
-              onChangeText={handleChange("subject")}
-              onBlur={handleBlur("subject")}
+              placeholder={t("EnteryourNumber")}
+              value={values.number}
+              onChangeText={handleChange("number")}
+              onBlur={handleBlur("number")}
             />
             <Input
               style={styles.input}
@@ -177,7 +177,7 @@ const Contactus = () => {
           </View>
         )}
       </Formik>
-      <View style={styles.lastsec}>
+      {/* <View style={styles.lastsec}>
         <Divider />
         <View>
           <View style={styles.highterlogo}>
@@ -206,12 +206,12 @@ const Contactus = () => {
             </View>
           </View>
         </View>
-      </View>
+      </View> */}
     </KeyboardAwareScrollView>
   );
 };
 
-export default Contactus;
+export default Feedback;
 
 const styles = StyleSheet.create({
   firstitle: {

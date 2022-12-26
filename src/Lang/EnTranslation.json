@@ -71,5 +71,11 @@
   "datasucess": "Data Is Sended Successfully",
   "phoneNum": "Phone Number",
   "howisyourex": "How Is Your Experiece?",
-  "anycomments": "Is There Any Comments ?"
+  "anycomments": "Is There Any Comments ?",
+  "courier": "Courier Delievery Form",
+  "shipmentdetails": "Shipment Details",
+  "sendernum": "Sender Contact Number",
+  "rLocation": "Reciever Location",
+  "rContact": "Reciever Contact Number",
+  "sLocation": "Sender Location"
 }

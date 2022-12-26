@@ -76,7 +76,6 @@ const Services = ({ navigation }) => {
           </ImageBackground>
         </View>
       </Animated.View>
-      {/* /////////////////////////////////// */}
       <Animated.View style={{ opacity: SecondOpacity }}>
         <View style={styles.card}>
           <ImageBackground
@@ -102,22 +101,19 @@ const Services = ({ navigation }) => {
         </View>
       </Animated.View>
 
-      {/* /////////////////////////////////// */}
       <Animated.View style={{ opacity: ThirdOpacity }}>
         <View style={styles.card}>
           <ImageBackground
-            source={require("../img/carservice.jpg")}
+            source={require("../img/courier.jpeg")}
             style={styles.cardimg}
           >
             <View style={styles.cardtxtcontainer}>
-              <Text style={styles.cardtxtcontainertxt}>
-                {t("CarServiceForm")}
-              </Text>
+              <Text style={styles.cardtxtcontainertxt}>{t("courier")}</Text>
               <View style={styles.cardtxtcontainer2}>
                 <Button
                   color={WhiteColor}
                   titleStyle={{ color: BlackColor }}
-                  onPress={() => navigation.navigate("CarServices")}
+                  onPress={() => navigation.navigate("Courier")}
                   buttonStyle={styles.btn}
                 >
                   {t("ClickHere")}
@@ -127,8 +123,6 @@ const Services = ({ navigation }) => {
           </ImageBackground>
         </View>
       </Animated.View>
-
-      {/* /////////////////////////////////// */}
       <Animated.View style={{ opacity: forthOpacity }}>
         <View style={styles.card}>
           <ImageBackground

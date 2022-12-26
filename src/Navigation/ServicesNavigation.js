@@ -11,6 +11,7 @@ import GymPaymentNavigation from "./GymPaymentNavigation";
 // import Gym from "../Screens/Services/Gym";
 import PhonePaymentNavigation from "./PhonePaymentNavigation";
 // import Phone from "../Screens/Services/Phone";
+import Courier from "../Screens/Services/Courier";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +49,13 @@ const ServicesNavigation = () => {
       <Stack.Screen
         name="Phone"
         component={PhonePaymentNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Courier"
+        component={Courier}
         options={{
           headerShown: false,
         }}

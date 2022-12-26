@@ -19,3 +19,9 @@ export const contactUsApi =
   "https://m.glowdg.ae/json/?contactus=yes&cname=asdsadsad&csubject=sadsadsad&cmessage=asdsadsadsad&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
 export const feedBackApi =
   "https://m.glowdg.ae/json/?feedback=yes&howisyourexperience=asdsadsad&anycomments=sadsadsad&cmessage=asdsadsadsad&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
+//? done
+export const courier =
+  "https://m.glowdg.ae/json/?coudelivery=yes&shipmentdetails=asdsadsad&senderlocation=sadsadsad&sendercontactnumber=asdsadsadsad&reclocations=asdsadsad&reccontactnmber=asdsadsadas&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
+//? didnt finish
+export const businessForm =
+  "https://m.glowdg.ae/json/?binquery=yes&bcompanyname=asdsadsad&bsubject=sadsadsad&businessinquireydeals=asdsadsadsad&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";

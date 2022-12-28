@@ -19,23 +19,11 @@ const CarWash = ({ navigation }) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [error, setError] = useState("");
+
   const data = [
     { label: "Sedan", value: "1" },
     { label: "4x4", value: "2" },
-  ];
-  const data1 = [
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-    { label: "4", value: "4" },
-    { label: "5", value: "5" },
-    { label: "6", value: "6" },
-    { label: "7", value: "7" },
-    { label: "8", value: "8" },
-    { label: "9", value: "9" },
-    { label: "10", value: "10" },
-    { label: "11", value: "11" },
-    { label: "12", value: "12" },
   ];
 
   return (
@@ -45,12 +33,10 @@ const CarWash = ({ navigation }) => {
         <Formik
           initialValues={{
             type: "",
-            repair: "",
-            contact: "",
           }}
-          onSubmit={async (values) => {
-            if (values.type && values.repair && values.contact) {
-              await HandleLogIn(values.type, values.repair, values.contact);
+          onSubmit={(values) => {
+            if (value !== null) {
+              navigation.navigate("CarWashForm", { value: value });
             } else {
               setError(t("formcomplete"));
             }
@@ -82,12 +68,30 @@ const CarWash = ({ navigation }) => {
                     }}
                   />
                 </View>
+                <View>
+                  <View>
+                    {error && (
+                      <View style={styles.errmessage}>
+                        <Text style={styles.errmessagetxt}>{error}</Text>
+                      </View>
+                    )}
+                  </View>
+                  <View>
+                    {error === undefined && (
+                      <View style={styles.errmessage}>
+                        <Text style={styles.errmessagetxt}>
+                          {t("checkconnection")}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+                </View>
 
                 <View style={styles.btn}>
                   <Button
                     color="secondary"
-                    onPress={() => navigation.navigate("Summary4")}
-                    // onPress={handleSubmit}
+                    // onPress={() => navigation.navigate("Summary4")}
+                    onPress={handleSubmit}
                   >
                     {t("Next")}
                   </Button>
@@ -143,5 +147,15 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     textAlign: "center",
+  },
+  errmessage: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  errmessagetxt: {
+    fontSize: 14,
+    fontFamily: "Roboto_500Medium",
+    color: "red",
   },
 });

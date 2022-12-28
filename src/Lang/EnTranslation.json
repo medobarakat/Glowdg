@@ -77,5 +77,6 @@
   "sendernum": "Sender Contact Number",
   "rLocation": "Reciever Location",
   "rContact": "Reciever Contact Number",
-  "sLocation": "Sender Location"
+  "sLocation": "Sender Location",
+  "cleaning": "Cleaning Inside And Outside"
 }

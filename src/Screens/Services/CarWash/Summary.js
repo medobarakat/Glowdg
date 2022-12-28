@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Divider, Input, Button } from "@rneui/themed";
 import { Overlay } from "react-native-elements";
 import {
@@ -19,10 +19,12 @@ import LottieView from "lottie-react-native";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const Summary = ({ navigation }) => {
+const Summary = ({ navigation, route }) => {
+  const { qty, price } = route.params;
   const { t } = useTranslation();
   const animation = useRef(null);
   const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(true);
   const IsGuest = useSelector((state) => state.auth.IsGuest);
   const orderhandler = () => {
     if (IsGuest) {
@@ -31,6 +33,11 @@ const Summary = ({ navigation }) => {
       console.warn(t("success"));
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setShowModal2(false);
+    }, 2000);
+  });
   return (
     <View style={styles.container}>
       {IsGuest && (
@@ -59,21 +66,48 @@ const Summary = ({ navigation }) => {
         </>
       )}
       <View>
+        {/* start of modal */}
+        <Overlay
+          isVisible={showModal2}
+          onBackdropPress={() => setShowModal(false)}
+        >
+          <LottieView
+            autoPlay
+            loop={false}
+            ref={animation}
+            style={{
+              width: 100,
+              height: 200,
+              backgroundColor: "#eee",
+            }}
+            source={require("../../../img/33886-check-okey-done.json")}
+          />
+          <Pressable style={styles.centerizedCol}>
+            <Text>{t("datasucess")}</Text>
+          </Pressable>
+        </Overlay>
+        {/* end of modal */}
         <Text style={styles.subformmaintxt1}>{t("Summary")}</Text>
         <View style={styles.subformmaincontainer}>
           <View style={styles.subformmain}>
-            <Text style={styles.subformmaintxt}>>{t("silverstartadress")}</Text>
+            <Text style={styles.subformmaintxt}>{t("silverstartadress")}</Text>
           </View>
           <View style={styles.subformmain}>
-            <Text style={styles.subformmaintxt}>{t("Quantitiy")} 1</Text>
+            <Text style={styles.subformmaintxt}>
+              {t("Quantitiy")} {JSON.stringify(qty)}
+            </Text>
           </View>
           <View style={styles.subformmain}>
-            <Text style={styles.subformmaintxt}>200.00 {t("Dirham")}</Text>
+            <Text style={styles.subformmaintxt}>
+              {JSON.stringify(price)} {t("Dirham")}
+            </Text>
           </View>
         </View>
         <View style={styles.subformmainlast}>
           <Text style={styles.subformmainlasttxt1}>{t("Total")} :</Text>
-          <Text style={styles.subformmainlasttxt2}>200.00 {t("Dirham")}</Text>
+          <Text style={styles.subformmainlasttxt2}>
+            {JSON.stringify(price)} {t("Dirham")}
+          </Text>
         </View>
         <View style={styles.btn}>
           <Button

@@ -49,11 +49,6 @@ const Gym = ({ navigation }) => {
   ];
 
   const HandleLogIn = (phone, email) => {
-    // console.log(value1);
-    // console.log(value);
-    // console.log(phone);
-    // console.log(email);
-    // setShowModal(false);
     const url =
       Api_url +
       `?gymform=yes&sgym=${value1}&noofmonths=${value}&cnmb=${phone}&custemail=${email}`;

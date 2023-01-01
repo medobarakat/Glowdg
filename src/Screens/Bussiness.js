@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useState, useRef } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { BlackColor, PrimaryColor, GrayColor } from "../constants/Colors";
 import { height, TitleSize, width } from "../constants/Sized";
 import { useTranslation } from "react-i18next";
@@ -8,13 +14,37 @@ import { Input, Overlay, Divider } from "react-native-elements";
 import { Formik } from "formik";
 import { Button, Icon } from "@rneui/themed";
 import Svg, { G, Path } from "react-native-svg";
+import LottieView from "lottie-react-native";
+import axios from "axios";
+import { Api_url } from "../uitlties/ApiConstants";
 
 const Bussiness = () => {
   const { t } = useTranslation();
+  const animation = useRef(null);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const number = "+971507410693";
-  const message = "Hello GlowDg I Want To make An Order";
+  const HandleSubmitData = (companyname, Subject, Details, phone, email) => {
+    const url =
+      Api_url +
+      `?binquery=yes&bcompanyname=${companyname}&bsubject=${Subject}&businessinquireydeals=${Details}&cnmb=${phone}&custemail=${email}`;
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    };
+    axios
+      .get(url, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .then((res) => {
+        setShowModal(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -49,10 +79,20 @@ const Bussiness = () => {
           isVisible={showModal}
           onBackdropPress={() => setShowModal(false)}
         >
-          <View style={styles.centerizedCol}>
-            {/* <ActivityIndicator size="large" color="#0000ff" /> */}
-            <Text>{t("Submitted")}</Text>
-          </View>
+          <LottieView
+            autoPlay
+            loop={false}
+            ref={animation}
+            style={{
+              width: 100,
+              height: 200,
+              backgroundColor: "#eee",
+            }}
+            source={require("../img/33886-check-okey-done.json")}
+          />
+          <Pressable style={styles.centerizedCol}>
+            <Text>{t("datasucess")}</Text>
+          </Pressable>
         </Overlay>
         {/* end of modal */}
 
@@ -70,7 +110,7 @@ const Bussiness = () => {
             email: "",
             number: "",
           }}
-          onSubmit={async (values) => {
+          onSubmit={(values) => {
             if (
               values.companyname &&
               values.Subject &&
@@ -78,7 +118,7 @@ const Bussiness = () => {
               values.email &&
               values.number
             ) {
-              await HandleSubmitData(
+              HandleSubmitData(
                 values.companyname,
                 values.Subject,
                 values.Details,

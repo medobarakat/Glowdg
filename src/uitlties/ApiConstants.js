@@ -11,13 +11,13 @@ export const PhoneMaintainance_Api =
 //? done 2
 export const gymApi =
   "https://m.glowdg.ae/json/?gymform=yes&sgym=theragym&noofmonths=89&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
-//! didnt work 3
+//? done 3
 export const CarWashApi =
   "https://m.glowdg.ae/json/?carwash=yes&4by4=1&salooncleaning=1212&saloonqty=1&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
 //? done 6
 export const contactUsApi =
   "https://m.glowdg.ae/json/?contactus=yes&cname=asdsadsad&csubject=sadsadsad&cmessage=asdsadsadsad&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
-//! didnt finish 7
+//! the page doesn't exist didnt finish 7
 export const feedBackApi =
   "https://m.glowdg.ae/json/?feedback=yes&howisyourexperience=asdsadsad&anycomments=sadsadsad&cmessage=asdsadsadsad&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
 //? done 4

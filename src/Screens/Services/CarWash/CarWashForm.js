@@ -24,6 +24,7 @@ import LottieView from "lottie-react-native";
 const CarWashForm = ({ navigation, route }) => {
   const { value } = route.params;
   const { t } = useTranslation();
+  const animation = useRef(null);
   const [showModal, setShowModal] = useState("");
   const [error, setError] = useState("");
   //?   change the prices here
@@ -93,6 +94,27 @@ const CarWashForm = ({ navigation, route }) => {
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
+      {/* start of modal */}
+      <Overlay
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+      >
+        <LottieView
+          autoPlay
+          loop={false}
+          ref={animation}
+          style={{
+            width: 100,
+            height: 200,
+            backgroundColor: "#eee",
+          }}
+          source={require("../../../img/33886-check-okey-done.json")}
+        />
+        <Pressable style={styles.centerizedCol}>
+          <Text>{t("datasucess")}</Text>
+        </Pressable>
+      </Overlay>
+      {/* end of modal */}
       <View style={styles.container}>
         <Text style={styles.maintxt}>
           {t("CarWashForm")}

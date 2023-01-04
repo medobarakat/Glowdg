@@ -23,6 +23,6 @@ export const feedBackApi =
 //? done 4
 export const courier =
   "https://m.glowdg.ae/json/?coudelivery=yes&shipmentdetails=asdsadsad&senderlocation=sadsadsad&sendercontactnumber=asdsadsadsad&reclocations=asdsadsad&reccontactnmber=asdsadsadas&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
-//! didnt finish 5
+//? done 5
 export const businessForm =
   "https://m.glowdg.ae/json/?binquery=yes&bcompanyname=asdsadsad&bsubject=sadsadsad&businessinquireydeals=asdsadsadsad&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";

@@ -17,6 +17,7 @@ import Svg, { G, Path } from "react-native-svg";
 import LottieView from "lottie-react-native";
 import axios from "axios";
 import { Api_url } from "../uitlties/ApiConstants";
+import { AutoGrowingTextInput } from "react-native-autogrow-textinput";
 
 const Bussiness = () => {
   const { t } = useTranslation();
@@ -147,12 +148,21 @@ const Bussiness = () => {
                 onBlur={handleBlur("Subject")}
               />
               <Input
-                style={styles.input}
+                style={styles.inputStyle}
                 placeholder={t("details2")}
                 value={values.Details}
                 onChangeText={handleChange("Details")}
                 onBlur={handleBlur("Details")}
               />
+              {/* <AutoGrowingTextInput
+                minHeight={40}
+                maxHeight={150}
+                onChangeText={handleChange("Details")}
+                placeholder={t("details2")}
+                placeholderTextColor="#C7C7CD"
+                style={styles.inputStyle}
+                value={values.Details}
+              /> */}
               <Input
                 style={styles.input}
                 placeholder={t("contact2")}
@@ -274,5 +284,8 @@ const styles = StyleSheet.create({
     right: width / 20,
     bottom: height / 20,
     zIndex: 10,
+  },
+  inputStyle: {
+    height: 20,
   },
 });

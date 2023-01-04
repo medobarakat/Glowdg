@@ -13,85 +13,28 @@ import { Divider, Input, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
-import { Api_url } from "../../uitlties/ApiConstants";
-import { Overlay } from "react-native-elements";
-import LottieView from "lottie-react-native";
+
 const Phone = ({ navigation }) => {
   const { t } = useTranslation();
-  const [showModal, setShowModal] = useState("");
   const [error, setError] = useState("");
-  const animation = useRef(null);
-
-  const HandleSubmitFromFormik = (type, repair, contact, email) => {
-    setShowModal(false);
-    const url =
-      Api_url +
-      `?phoneform=yes&top=${type}&whrepaired=${repair}&cnmb=${contact}&custemail=${email}`;
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-      },
-    };
-    axios
-      .get(url, config)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .then((res) => {
-        setShowModal(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const HandleSubmitFromFormik = (type, repair) => {
+    navigation.navigate("PhoneFinalCost", {
+      type: type,
+      repair: repair,
+    });
   };
-
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
-      {/* start of modal */}
-      <Overlay
-        isVisible={showModal}
-        onBackdropPress={() => setShowModal(false)}
-      >
-        <LottieView
-          autoPlay
-          loop={false}
-          ref={animation}
-          style={{
-            width: 100,
-            height: 200,
-            backgroundColor: "#eee",
-          }}
-          source={require("../../img/33886-check-okey-done.json")}
-        />
-        <Pressable style={styles.centerizedCol}>
-          <Text>{t("datasucess")}</Text>
-        </Pressable>
-      </Overlay>
-      {/* end of modal */}
       <View style={styles.container}>
         <Text style={styles.maintxt}>{t("PhoneMaintenanceForm")}</Text>
         <Formik
           initialValues={{
             type: "",
             repair: "",
-            contact: "",
-            email: "",
           }}
           onSubmit={(values) => {
-            if (
-              values.type &&
-              values.repair &&
-              values.contact &&
-              values.email
-            ) {
-              HandleSubmitFromFormik(
-                values.type,
-                values.repair,
-                values.contact,
-                values.email
-              );
+            if (values.type && values.repair) {
+              HandleSubmitFromFormik(values.type, values.repair);
             } else {
               setError("Complete The Form Please");
             }
@@ -100,9 +43,6 @@ const Phone = ({ navigation }) => {
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View>
               <View style={styles.subformmaincontainer}>
-                <Text style={styles.subformmaincontainertitle}>
-                  {t("PhoneMaintenanceForm")}
-                </Text>
                 <View style={styles.subformcontainer}>
                   <Text style={styles.subformtitle}>{t("TypeOfPhone")}</Text>
                   <Input
@@ -123,24 +63,7 @@ const Phone = ({ navigation }) => {
                     onBlur={handleBlur("repair")}
                   />
                 </View>
-                <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>{t("ContactNumber")}</Text>
-                  <Input
-                    style={styles.subforminput}
-                    value={values.contact}
-                    onChangeText={handleChange("contact")}
-                    onBlur={handleBlur("contact")}
-                  />
-                </View>
-                <View style={styles.subformcontainer}>
-                  <Text style={styles.subformtitle}>{t("youremail")}</Text>
-                  <Input
-                    style={styles.subforminput}
-                    value={values.email}
-                    onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                  />
-                </View>
+
                 {/* for error handling */}
 
                 <View>
@@ -163,11 +86,7 @@ const Phone = ({ navigation }) => {
                 </View>
                 {/* end of error handling */}
                 <View style={styles.btn}>
-                  <Button
-                    color="secondary"
-                    // onPress={() => navigation.navigate("PhoneFinalCost")}
-                    onPress={handleSubmit}
-                  >
+                  <Button color="secondary" onPress={handleSubmit}>
                     {t("Next")}
                   </Button>
                 </View>
@@ -210,8 +129,10 @@ const styles = StyleSheet.create({
     width: width / 1.2,
     marginTop: height / 15,
     position: "relative",
-    borderTopWidth: 4,
+    borderTopWidth: 3,
     borderTopColor: BlackColor,
+    borderRadius: 20,
+    padding: width / 30,
   },
 
   subformmaincontainertitle: {
@@ -226,12 +147,16 @@ const styles = StyleSheet.create({
   subformtitle: {
     fontFamily: "Roboto_500Medium",
     textAlign: "center",
+    textTransform: "capitalize",
+    fontSize: secSmallSize / 1.2,
   },
   btn: {
     backgroundColor: BlackColor,
+    color: WhiteColor,
     width: width / 5,
-    marginLeft: width / 3,
+    marginLeft: width / 3.5,
     fontSize: secSmallSize,
+    borderRadius: 20,
   },
   previouscontainer: {
     marginVertical: height / 35,

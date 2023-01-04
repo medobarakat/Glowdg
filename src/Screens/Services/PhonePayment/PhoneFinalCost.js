@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
@@ -17,22 +17,77 @@ import {
 } from "../../../constants/Sized";
 import { Divider, Input, Button } from "@rneui/themed";
 import { useTranslation } from "react-i18next";
+import Icon from "react-native-vector-icons/FontAwesome";
+import axios from "axios";
+import LottieView from "lottie-react-native";
+import { Overlay } from "react-native-elements";
+import { Api_url } from "../../../uitlties/ApiConstants";
 
-const PhoneFinalCost = ({ navigation }) => {
+const PhoneFinalCost = ({ navigation, route }) => {
+  const { type, repair } = route.params;
+  const [error, setError] = useState("");
+  const [loadingbtn, setLoadingbtn] = useState(false);
+  const [showModal, setShowModal] = useState("");
+  const animation = useRef(null);
   const { t } = useTranslation();
+  const HandleSubmitFromFormik = (phone, email) => {
+    setShowModal(false);
+    setLoadingbtn(true);
+    const url =
+      Api_url +
+      `?phoneform=yes&top=${type}&whrepaired=${repair}&cnmb=${phone}&custemail=${email}`;
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    };
+    axios
+      .get(url, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .then((res) => {
+        setShowModal(true);
+        setLoadingbtn(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
+      {/* start of modal */}
+      <Overlay
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+      >
+        <LottieView
+          autoPlay
+          loop={false}
+          ref={animation}
+          style={{
+            width: 100,
+            height: 200,
+            backgroundColor: "#eee",
+          }}
+          source={require("../../../img/33886-check-okey-done.json")}
+        />
+        <Pressable style={styles.centerizedCol}>
+          <Text>{t("datasucess")}</Text>
+        </Pressable>
+      </Overlay>
+      {/* end of modal */}
       <ScrollView style={{ flex: 1, backgroundColor: WhiteColor }}>
         <View style={styles.container}>
           <Formik
             initialValues={{
-              type: "",
-              repair: "",
-              contact: "",
+              phone: "",
+              email: "",
             }}
             onSubmit={async (values) => {
-              if (values.type && values.repair && values.contact) {
-                await HandleLogIn(values.type, values.repair, values.contact);
+              if (values.phone && values.email) {
+                HandleSubmitFromFormik(values.phone, values.email);
               } else {
                 setError(t("formcomplete"));
               }
@@ -41,10 +96,10 @@ const PhoneFinalCost = ({ navigation }) => {
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <View>
                 <View style={styles.subformmaincontainer}>
-                  <Text style={styles.subformmaincontainertitle}>
+                  {/* <Text style={styles.subformmaincontainertitle}>
                     {t("Finalcost")}
-                  </Text>
-                  <View style={styles.subformcontainer}>
+                  </Text> */}
+                  {/* <View style={styles.subformcontainer}>
                     <Text style={styles.subformtitle}>
                       {t("Thefinalestimatedpriceis")}
                     </Text>
@@ -60,7 +115,7 @@ const PhoneFinalCost = ({ navigation }) => {
                       onChangeText={handleChange("type")}
                       onBlur={handleBlur("type")}
                     />
-                  </View>
+                  </View> */}
                   <View style={styles.subformcontainer}>
                     <Text style={styles.subformtitle}>Message</Text>
                     <Input
@@ -77,19 +132,52 @@ const PhoneFinalCost = ({ navigation }) => {
                     </Text>
                     <Input
                       style={styles.subforminput}
-                      value={values.contact}
-                      onChangeText={handleChange("contact")}
-                      onBlur={handleBlur("contact")}
+                      value={values.email}
+                      onChangeText={handleChange("email")}
+                      onBlur={handleBlur("email")}
+                      leftIcon={<Icon name="user" size={24} color="black" />}
                     />
                   </View>
+                  <View style={styles.subformcontainer}>
+                    <Text style={styles.subformtitle}>{t("phoneNum")}</Text>
+                    <Input
+                      style={styles.subforminput}
+                      value={values.phone}
+                      onChangeText={handleChange("phone")}
+                      onBlur={handleBlur("phone")}
+                      leftIcon={<Icon name="phone" size={24} color="black" />}
+                    />
+                  </View>
+                  {/* for error handling */}
+
+                  <View>
+                    <View>
+                      {error && (
+                        <View style={styles.errmessage}>
+                          <Text style={styles.errmessagetxt}>{error}</Text>
+                        </View>
+                      )}
+                    </View>
+                    <View>
+                      {error === undefined && (
+                        <View style={styles.errmessage}>
+                          <Text style={styles.errmessagetxt}>
+                            {t("checkconnection")}
+                          </Text>
+                        </View>
+                      )}
+                    </View>
+                  </View>
+                  {/* end of error handling */}
                   <View style={styles.btn}>
                     <Button
-                      titleStyle={styles.btntxt}
+                      buttonStyle={styles.btntxt}
                       color="secondary"
-                      onPress={() => navigation.navigate("Summary1")}
-                      // onPress={handleSubmit}
+                      loading={loadingbtn}
+                      // onPress={() => navigation.navigate("Summary1")}
+                      onPress={handleSubmit}
                     >
-                      {t("NextStep")}
+                      {t("Submit")}
                     </Button>
                   </View>
                   <View style={styles.previouscontainer}>
@@ -123,8 +211,10 @@ const styles = StyleSheet.create({
     width: width / 1.2,
     marginTop: height / 15,
     position: "relative",
-    borderTopWidth: 4,
+    borderTopWidth: 3,
     borderTopColor: BlackColor,
+    borderRadius: 20,
+    padding: width / 30,
   },
 
   subformmaincontainertitle: {
@@ -144,8 +234,9 @@ const styles = StyleSheet.create({
     backgroundColor: BlackColor,
     color: WhiteColor,
     width: width / 5,
-    marginLeft: width / 3,
+    marginLeft: width / 3.5,
     fontSize: secSmallSize,
+    borderRadius: 20,
   },
   btntxt: {
     fontSize: secSmallSize / 1.3,
@@ -156,5 +247,22 @@ const styles = StyleSheet.create({
   previouscontainertxt: {
     fontFamily: "Roboto_700Bold",
     textAlign: "center",
+  },
+  errmessage: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  errmessagetxt: {
+    fontSize: 14,
+    fontFamily: "Roboto_500Medium",
+    color: "red",
+  },
+  centerizedCol: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 15,
   },
 });

@@ -8,7 +8,7 @@ export const electrnoics_Api_Url =
 //! done 1 tested
 export const PhoneMaintainance_Api =
   "https://m.glowdg.ae/json/?phoneform=yes&top=maintenence%20phone&whrepaired=1723871827389213&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
-//? done 2
+//! done 2 1 tested
 export const gymApi =
   "https://m.glowdg.ae/json/?gymform=yes&sgym=theragym&noofmonths=89&cnmb=12121212&custemail=anwar.ahmed.compassionate@gmail.com";
 //? done 3

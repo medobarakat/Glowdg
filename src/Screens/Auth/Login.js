@@ -30,7 +30,7 @@ import { useDispatch } from "react-redux";
 import { handlelogInUser } from "../../features/auth/authSlice";
 
 const Login = ({ navigation }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const progress = useSharedValue(0);
@@ -43,7 +43,6 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     progress.value = withTiming(height / 7, { duration: 3000 });
   }, []);
-
 
   const HandleLogIn = async (username, password) => {
     const url = Api_url + `?uname=${username}&upass=${password}&flg=bUa5J4`;
@@ -59,16 +58,15 @@ const Login = ({ navigation }) => {
       .get(url, config)
       .then((res) => {
         console.log(res.data);
-        dispatch(handlelogInUser(res.data))
+        dispatch(handlelogInUser(res.data));
       })
       .then((res) => {
-        navigation.navigate("home1")
-
+        navigation.navigate("home1");
       })
       .catch((err) => {
         console.log(err);
-        setShowModal(false)
-        setError(true)
+        setShowModal(false);
+        setError(true);
       });
   };
 
@@ -141,7 +139,8 @@ const Login = ({ navigation }) => {
                   <View style={styles.errmessage}>
                     <Text style={styles.errmessagetxt}>
                       {" "}
-                      Check Your Connection / User name and Password and retry to log in{" "}
+                      Check Your Connection / User name and Password and retry
+                      to log in{" "}
                     </Text>
                   </View>
                 )}
@@ -253,6 +252,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Roboto_500Medium",
     color: "red",
-    lineHeight: 25
+    lineHeight: 25,
   },
 });
